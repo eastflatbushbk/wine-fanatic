@@ -1,0 +1,2 @@
+class UserWine < ApplicationRecord
+end
