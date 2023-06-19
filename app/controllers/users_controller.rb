@@ -1,5 +1,9 @@
 class UsersController < ApplicationController
     skip_before_action :confirm_authentication
+
+    def index
+      render json: User.all
+    end
     
     def show
         if current_user

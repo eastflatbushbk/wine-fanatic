@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(version: 2023_06_12_183845) do
   create_table "wines", force: :cascade do |t|
     t.string "name"
     t.string "winery"
-    t.string "vintage"
+    t.integer "vintage"
     t.string "region"
     t.string "grape"
     t.boolean "varietal_wine"

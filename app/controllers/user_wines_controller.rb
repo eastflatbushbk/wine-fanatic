@@ -1,4 +1,5 @@
 class UserWinesController < ApplicationController
+  
   def index
     @user_wines = UserWine.all
   end

@@ -3,7 +3,7 @@ class CreateWines < ActiveRecord::Migration[6.1]
     create_table :wines do |t|
       t.string :name
       t.string :winery
-      t.string :vintage
+      t.integer :vintage
       t.string :region
       t.string :grape
       t.boolean :varietal_wine
