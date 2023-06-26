@@ -1,25 +1,25 @@
 class WinesController < ApplicationController
     skip_before_action :confirm_authentication, only: [:index, :show, :create]
-    before_action :find_match, only: [:update]
+    before_action :find_wine, only: [:update]
 
     def index
         render json: Wine.all, status: :ok
-     end
+    end
      
-     def show
+    def show
         wine = Wine.find(params[:id])
         render json: wine,  status: :ok
-     end
+    end
  
-     def create
+    def create
          wine = current_user.wines.create!(wine_params)        
          render json: wine, status: :created
-     end
+    end
    
-     def update    
+    def update    
         @wine.update!(wine_params)
          render json: @wine, status: :accepted        
-     end
+    end
 
      private 
 
@@ -31,7 +31,7 @@ class WinesController < ApplicationController
     end
 
     def wine_params
-        params.permit(:name, :winery, :vintage, :region, :grape, :type, :varietal_wine, :img_url)
+        params.permit(:name, :winery, :vintage, :region, :grape, :wine_type, :varietal_wine, :img_url)
     end
  
 end

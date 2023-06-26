@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 2023_06_12_183845) do
     t.string "location"
     t.string "favorite_varietal"
     t.string "password_digest"
+    t.integer "wine_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -47,8 +48,9 @@ ActiveRecord::Schema.define(version: 2023_06_12_183845) do
     t.string "region"
     t.string "grape"
     t.boolean "varietal_wine"
-    t.string "type"
+    t.string "wine_type"
     t.string "img_url"
+    t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

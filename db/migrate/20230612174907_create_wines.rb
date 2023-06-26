@@ -7,8 +7,9 @@ class CreateWines < ActiveRecord::Migration[6.1]
       t.string :region
       t.string :grape
       t.boolean :varietal_wine
-      t.string :type
+      t.string :wine_type
       t.string :img_url
+      t.integer :user_id
 
       t.timestamps
     end

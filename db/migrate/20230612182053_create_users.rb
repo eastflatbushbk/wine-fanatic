@@ -6,6 +6,7 @@ class CreateUsers < ActiveRecord::Migration[6.1]
       t.string :location
       t.string :favorite_varietal
       t.string :password_digest
+      t.integer :wine_id
 
       t.timestamps
     end
