@@ -5,9 +5,8 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-
+UsersWine.delete_all
 Review.destroy_all
-# UsersWine.destroy_all
 Wine.destroy_all
 User.destroy_all
 
@@ -45,8 +44,8 @@ review9 = Review.create(user_id: user4.id, wine_id: wine4.id, comment: "Here for
 review10 = Review.create(user_id: user3.id, wine_id: wine4.id, comment: "Time to wine down!!")
 review11 = Review.create(user_id: user1.id, wine_id: wine4.id, comment: "Sip, sip, hooray.")
 
-# userswine1 = UsersWine.create(user_id: user1.id, wine_id: wine1.id, quantity: 3)
-# userswine2 = UsersWine.create(user_id: user2.id, wine_id: wine2.id, quantity: 2)
-# userswine3 = UsersWine.create(user_id: user3.id, wine_id: wine3.id, quantity: 4)
-# userswine4 = UsersWine.create(user_id: user4.id, wine_id: wine4.id, quantity: 5)
-# userswine5 = UsersWine.create(user_id: user5.id, wine_id: wine5.id, quantity: 8)
+userswine1 = UsersWine.create(user_id: user1.id, wine_id: wine1.id, quantity: 3)
+userswine2 = UsersWine.create(user_id: user2.id, wine_id: wine2.id, quantity: 2)
+userswine3 = UsersWine.create(user_id: user3.id, wine_id: wine3.id, quantity: 4)
+userswine4 = UsersWine.create(user_id: user4.id, wine_id: wine4.id, quantity: 5)
+userswine5 = UsersWine.create(user_id: user5.id, wine_id: wine5.id, quantity: 8)

@@ -1,7 +1,9 @@
 class UsersWinesController < ApplicationController
-  before_action :set_users_wine, only: [:show, :update, :destroy]
+  skip_before_action :confirm_authentication, only: [:index, :show, :create]
+  before_action :set_users_wine, only: [:update, :destroy]
 
   # GET /users_wines
+  # read any users entire cellar contents
   def index
     @users_wines = UsersWine.all
 
@@ -9,13 +11,19 @@ class UsersWinesController < ApplicationController
   end
 
   # GET /users_wines/1
+  # ???
   def show
-    render json: @users_wine
+    users_wine = UsersWine.find(params[:id])
+    render json: users_wine,  status: :ok 
   end
 
   # POST /users_wines
+  # add to cellar , wine's quatity will be 1
   def create
-    @users_wine = UsersWine.create!(users_wine_params)
+    # @users_wine = UsersWine.create!(users_wine_params)
+    # render json: @users_wine
+
+    @users_wine = current_user.users_wines.create!(users_wine_params.merge(quantity: 1))
     render json: @users_wine
 
     # @users_wine = UsersWine.new(users_wine_params)
@@ -28,15 +36,20 @@ class UsersWinesController < ApplicationController
   end
 
   # PATCH/PUT /users_wines/1
+  # update only wine's quantity 
   def update
-    if @users_wine.update(users_wine_params)
-      render json: @users_wine
-    else
-      render json: @users_wine.errors, status: :unprocessable_entity
-    end
+      @users_wine.update(quantity: params[:quantity])
+      render json: @users_wine, status: :accepted
+
+    # if @users_wine.update(users_wine_params)
+    #   render json: @users_wine
+    # else
+    #   render json: @users_wine.errors, status: :unprocessable_entity
+    # end
   end
 
   # DELETE /users_wines/1
+  # remove wine from cellar
   def destroy
     @users_wine.destroy
   end
@@ -44,12 +57,16 @@ class UsersWinesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_users_wine
-      @users_wine = UsersWine.find(params[:id])
+      # @users_wine = UsersWine.find(params[:id])
+      @users_wine = current_user.users_wines.find_by(params[:id])
+      if !@users_wine
+        render json:{ error: "Not authorized" }, status: :unauthorized
+    end
     end
 
     # Only allow a list of trusted parameters through.
     def users_wine_params
       # params.fetch(:users_wine, {})
-      params.permit(:user_id, :wine_id, :quantity)
+      params.permit(:wine_id, :quantity)
     end
 end

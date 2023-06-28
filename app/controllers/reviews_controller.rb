@@ -1,6 +1,6 @@
 class ReviewsController < ApplicationController
     skip_before_action :confirm_authentication, only: [:index, :show, :create]
-    before_action :find_opinion, only: [:update, :destroy]
+    before_action :find_review, only: [:update, :destroy]
 
        
     

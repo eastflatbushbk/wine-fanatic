@@ -33,12 +33,12 @@ ActiveRecord::Schema.define(version: 2023_06_12_183845) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "users_wines", id: false, force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "wine_id", null: false
+  create_table "users_wines", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "wine_id"
     t.integer "quantity"
-    t.index ["user_id", "wine_id"], name: "index_users_wines_on_user_id_and_wine_id"
-    t.index ["wine_id", "user_id"], name: "index_users_wines_on_wine_id_and_user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "wines", force: :cascade do |t|
