@@ -1,20 +1,19 @@
-{
-  "name": "phase-4-deploying-app-demo",
-  "description": "Build scripts for Heroku",
-  "engines": {
-    "node": "16.x"
-  },
-  "scripts": {
-    "build": "npm install --prefix client && npm run build --prefix client",
-    "clean": "rm -rf public",
-    "deploy": "cp -a client/build/. public/",
-    "heroku-postbuild": "npm run clean && npm run build && npm run deploy"
-  },
-  "dependencies": {
-    "@emotion/react": "^11.11.1",
-    "@emotion/styled": "^11.11.0",
-    "@fontsource/roboto": "^5.0.3",
-    "@mui/material": "^5.13.6",
-    "react-router-dom": "^6.14.0"
-  }
-}
+// {
+//   "name": "phase-4-deploying-app-demo",
+//   "description": "Build scripts for Heroku",
+//   "engines": {
+//     "node": "16.x"
+//   },
+//   "scripts": {
+//     "build": "npm install --prefix client && npm run build --prefix client",
+//     "clean": "rm -rf public",
+//     "deploy": "cp -a client/build/. public/",
+//     "heroku-postbuild": "npm run clean && npm run build && npm run deploy"
+//   },
+//   "dependencies": {
+    
+//     "react-redux": "^8.1.1",
+//     "react-router-dom": "^6.14.0",
+//     "redux": "^4.2.1"
+//   }
+// }
