@@ -51,3 +51,7 @@
 .container {
   padding: 2px 16px;
 }
+
+.MuiAppBar-colorPrimary {
+  background-color: lightgrey;
+}

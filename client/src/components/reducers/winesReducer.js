@@ -1,25 +1,24 @@
-const initialState = {
-  wines: []
+// const initialState = {
+//   wines: []
   
-}
+// }
 
-const winesReducer = (state=initialState, action) => {
+const winesReducer = (state=[], action) => {
 
   switch (action.type) {
   case "LOAD_WINES":
-    // return action.payload
-    // default:
-    //     return state;
-    return {
-      ...state,
-       wines: action.payload
+   return action.payload
+    // return {
+    //   ...state,
+    //    wines: action.payload
              
-    }
+    // }
     case "ADD_WINE":
-      return {
-        ...state,
-        wines: [...state.wines, action.payload]
-    }
+      return [...state, action.payload]
+      // return {
+      //   ...state,
+      //   wines: [...state.wines, action.payload]
+    // }
     case "UPDATE_WINE":
       const updatedWines = state.map(wine => {
         if(action.payload.id === wine.id) {
@@ -29,15 +28,11 @@ const winesReducer = (state=initialState, action) => {
         }
       })
       return updatedWines;
-     
+    
      
     default:
       return state;
 }
 }
-// case "LOAD_ITEM":
-    //     return {
-    //       ...state,
-    //        item: action.payload
-    //     }
+
     export default winesReducer;

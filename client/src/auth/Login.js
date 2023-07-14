@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 import { clearErrors, setErrors } from '../components/actions/errors'
 import { useNavigate } from 'react-router-dom';
-import {  Alert, Button, Grid, Link, Paper, TextField, Typography } from '@mui/material';
+import {  Alert, Box, Button, Grid, Link, Paper, TextField, Typography } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
+
+
 
 
 export default function Login() {
@@ -16,7 +18,7 @@ export default function Login() {
     // const avatarStyle={backgroundColor:'#1bbd7e'}
     const btnstyle={margin:'8px 0'}
 
-    
+    console.log(errors)
 
 
     function handleLogInSubmit(event){
@@ -47,21 +49,24 @@ export default function Login() {
               res.json().then(err => {
                 
                 // setErrors(err.errors)
-                dispatch(setErrors(err.errors));
+                dispatch(setErrors(err));
                 console.log(err.errors)
               })
             }
           })
         }
   
+        
+         
   return (
-    <form onSubmit={handleLogInSubmit}>
+    <Box m={3}>
+     <form onSubmit={handleLogInSubmit}>
     <div >
         
         <Grid >
             <Paper elevation={10} style={paperStyle} >
                 <Grid align='center'>
-                     
+                   <h1>🔒</h1>
                     <h2>Please Login</h2>
                 </Grid>
                 <TextField label='Username' placeholder='Enter username' fullWidth required onChange={(e) => setUsername(e.target.value)} />
@@ -69,17 +74,21 @@ export default function Login() {
               
                 <Button type='submit' color='primary' variant="contained" style={btnstyle} fullWidth >Log in</Button>
                 
-                <Typography > Do you have an account ?
-                     <Link href="#" >
+                <Typography > Don't have an account?
+                     <Link href="/signin" >
                         Sign Up 
                 </Link>
                 </Typography>
-                <Alert severity="warning">{errors}</Alert>
+               <div> 
+                {errors && errors.length > 0 && (<Alert severity="warning">{errors}</Alert>)}
+            </div>
             </Paper>
         </Grid>
 
-    </div>
+     </div>
     
     </form>
+    </Box>
+
   )
 }

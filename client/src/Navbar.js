@@ -19,17 +19,63 @@ import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-import { Box, IconButton, Stack } from '@mui/material';
-import { useSelector } from 'react-redux';
+import { Box, IconButton, Link, Stack } from '@mui/material';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { clearErrors } from './components/actions/errors';
 // import MenuIcon from '@mui/icons-material/Menu';
 
 
 
 function Navbar() {
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
     const { loggedIn } = useSelector(store => store.usersReducer);
     console.log(loggedIn)
 
+    const handleSignInClick = () => {
+        dispatch(clearErrors())
+        navigate("/signin")
+        
+      };
     
+    const handleLogInClick = () => {
+        dispatch(clearErrors())
+        navigate("/login")
+        
+      };
+    const handleUsersClick = () => {
+        dispatch(clearErrors())
+        navigate("/users")
+        
+      };
+    const handleAddWineClick = () => {
+        dispatch(clearErrors())
+        navigate("/add_wine")
+        
+      };
+    const handleHomeClick = () => {
+        dispatch(clearErrors())
+        navigate("/wines")
+        
+      };
+
+      function handleLogout() {
+        dispatch(clearErrors())
+        fetch("/logout", {
+            method: "DELETE"
+        })
+        const action = {
+            type: "LOGOUT_USER"
+           
+          }
+          dispatch(action)
+         navigate('/login')
+       
+    }
+    
+
+
     const navigationLinks = loggedIn ? (
 
         <Box sx={{ flexGrow: 1 }}>
@@ -49,14 +95,14 @@ function Navbar() {
           </Typography>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             <Stack direction='row' spacing={2}>
-            <Button color="inherit">Home</Button>
-            <Button color="inherit">add wine</Button>
+            <Button color="inherit"onClick={handleHomeClick}>Home</Button>
+            <Button color="inherit" onClick={handleAddWineClick}>add wine</Button> 
             <Button color="inherit">my cellar</Button>
-            <Button color="inherit">users</Button>
+            <Button color="inherit" onClick={handleUsersClick}>users</Button>
             </Stack>
            </Typography>
           
-          <Button color="inherit">Logout</Button>
+          <Button color="inherit" onClick={handleLogout} >Logout</Button>
         </Toolbar>
       </AppBar>
     </Box>
@@ -81,8 +127,8 @@ function Navbar() {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             
            </Typography>
-           <Button color="inherit">signin</Button>
-          <Button color="inherit">Login</Button>
+           <Button color="inherit" onClick={handleSignInClick} >signin</Button>
+          <Button color="inherit" onClick={handleLogInClick}>Login</Button>
         </Toolbar>
       </AppBar>
     </Box>
