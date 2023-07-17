@@ -5,6 +5,7 @@ import WineBarIcon from '@mui/icons-material/WineBar';
 import React from 'react'
 import { useSelector } from 'react-redux';
 import { red } from '@mui/material/colors';
+import { Link } from 'react-router-dom';
 
 export default function UsersCard({user}) {
     const { currentUser } = useSelector(store => store.usersReducer)
@@ -27,6 +28,10 @@ export default function UsersCard({user}) {
                     </Tooltip> */}
                 </>
             ):(null)
+
+            // function handleClick (){
+            //     console.log("cellar btn clicked")
+            // }
 
   return ( 
     <Card sx={{ maxWidth: 345 }}>
@@ -53,13 +58,15 @@ export default function UsersCard({user}) {
          Location : {user.location}
         </Typography>
       </CardContent>
-
-      <CardActions disableSpacing>
-      <Tooltip title="view user's cellar">
-        <IconButton aria-label="add to favorites">
+{/* onClick={handleClick} */}
+      <CardActions disableSpacing >
+      <Link to={`/cellars/${user.id}`}>
+       <Tooltip title="view user's cellar">
+        <IconButton aria-label="add to favorites" >
           < WineBarIcon />
         </IconButton>
         </Tooltip>
+         </Link>
         </CardActions>
   </Card>
   )

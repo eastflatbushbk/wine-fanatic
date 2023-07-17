@@ -21,7 +21,6 @@ class Wine < ApplicationRecord
     validates :vintage, presence: true, allow_blank: false
     validates :region, presence: true, allow_blank: false
     validates :grape, presence: true, allow_blank: false
-    validates :varietal_wine, presence: true, allow_blank: false
     validates :wine_type, presence: true, allow_blank: false
     validate :check_vintage
     validate :check_wine_type

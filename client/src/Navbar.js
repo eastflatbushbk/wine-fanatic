@@ -30,8 +30,11 @@ import { clearErrors } from './components/actions/errors';
 function Navbar() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const { currentUser } = useSelector(store => store.usersReducer)
     const { loggedIn } = useSelector(store => store.usersReducer);
-    console.log(loggedIn)
+    console.log(`logged in ? ${loggedIn}`)
+    // console.log(currentUser.users_wines)
+    // console.log(`current user id : ${currentUser.id}`)
 
     const handleSignInClick = () => {
         dispatch(clearErrors())
@@ -42,6 +45,11 @@ function Navbar() {
     const handleLogInClick = () => {
         dispatch(clearErrors())
         navigate("/login")
+        
+      };
+    const handleMyCellarClick = () => {
+        dispatch(clearErrors())
+        navigate(`/cellars/${currentUser.id}`)
         
       };
     const handleUsersClick = () => {
@@ -97,7 +105,7 @@ function Navbar() {
             <Stack direction='row' spacing={2}>
             <Button color="inherit"onClick={handleHomeClick}>Home</Button>
             <Button color="inherit" onClick={handleAddWineClick}>add wine</Button> 
-            <Button color="inherit">my cellar</Button>
+            <Button color="inherit" onClick={handleMyCellarClick}>my cellar</Button>
             <Button color="inherit" onClick={handleUsersClick}>users</Button>
             </Stack>
            </Typography>

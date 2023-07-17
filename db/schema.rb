@@ -47,7 +47,6 @@ ActiveRecord::Schema.define(version: 2023_06_12_183845) do
     t.integer "vintage"
     t.string "region"
     t.string "grape"
-    t.boolean "varietal_wine"
     t.string "wine_type"
     t.string "img_url"
     t.integer "user_id"

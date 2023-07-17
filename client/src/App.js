@@ -13,6 +13,8 @@ import EditWineForm from './components/wines/EditWineForm';
 import ReviewForm from './components/reviews/ReviewForm';
 import WineForm from './components/wines/WineForm';
 import UsersPage from './components/users/UsersPage';
+import CellarPage from './components/cellars/CellarPage';
+import EditCellarForm from './components/cellars/EditCellarForm';
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -21,26 +23,29 @@ function App() {
   //  const { currentUser } = useSelector((store) => store.usersReducer)
 console.log("hey")
   useEffect(() => {
+     dispatch(loadWines())
+      dispatch(loadCurrentUser(setLoading)) 
+     dispatch(loadUsers(setLoading)) 
     
-    dispatch(loadWines())
-    dispatch(loadCurrentUser(setLoading))
-    dispatch(loadUsers(setLoading))    
   }, [dispatch])
 
-   console.log(loading)
-//    const routeJsx = loading ? ( <>...</> ) : (
+   console.log(` loading ? ${loading}`)
+   const routeJsx = loading ? ( <>...</> ) : (
 
-//    <Routes>
-//                  <Route exact path="/wines" element={<WinePage />} />
-//                  <Route exact path="/wines/:id" element={<WineDetails />} />
-//               {/* <Route exact path="/add_match" element={<MatchForm />} />
-//                 <Route exact path="/edit_match" element={<EditMatchForm rendering={rendering}     />} /> */}
-//                   <Route exact path="/login" element={<Login />} />
-//                   <Route exact path="/signin" element={<Signin />} />
-//                   {/* <Route exact path="/edit_comment" element={<CommentForm rendering={rendering}     />} />
-//                   <Route exact path="/" element={<Home />} /> */}
-//          </Routes>
-//  )
+   <Routes>
+                 <Route exact path="/wines" element={<WinePage />} />
+                 <Route exact path="/users" element={<UsersPage />} />
+                 <Route exact path="/wines/:id" element={<WineDetails />} />
+                 <Route exact path="/cellars/:id" element={<CellarPage />} />
+              <Route exact path="/add_wine" element={<WineForm />} />
+                <Route exact path="/edit_wine" element={<EditWineForm  loading={loading}    />} />
+                <Route exact path="/edit_userswine" element={<EditCellarForm  loading={loading}     />} />
+                  <Route exact path="/login" element={<Login />} />
+                  <Route exact path="/signin" element={<Signin />} />
+                  <Route exact path="/edit_review" element={<ReviewForm     />} />
+                  {/* <Route exact path="/" element={<Home />} /> */}
+         </Routes>
+ )
 
 
   return (
@@ -48,19 +53,9 @@ console.log("hey")
        
           
                  <Navbar />
-                         {/* {routeJsx} */}
+                         {routeJsx}
            
-                         <Routes>
-                 <Route exact path="/wines" element={<WinePage />} />
-                 <Route exact path="/users" element={<UsersPage />} />
-                 <Route exact path="/wines/:id" element={<WineDetails />} />
-              <Route exact path="/add_wine" element={<WineForm />} />
-                <Route exact path="/edit_wine" element={<EditWineForm      />} />
-                  <Route exact path="/login" element={<Login />} />
-                  <Route exact path="/signin" element={<Signin />} />
-                  <Route exact path="/edit_review" element={<ReviewForm     />} />
-                  {/* <Route exact path="/" element={<Home />} /> */}
-         </Routes>
+                         
           
     </div>
   );

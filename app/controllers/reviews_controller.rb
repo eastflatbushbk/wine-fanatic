@@ -14,8 +14,16 @@ class ReviewsController < ApplicationController
     end
 
     def create
-        review = current_user.reviews.create!(review_params)
-        render json: review, status: :created
+        # review = current_user.reviews.create!(review_params)
+        # render json: review, status: :created
+        wine = Wine.find(params[:wine_id])
+
+  if Review.exists?(user_id: current_user.id, wine_id: wine.id)
+    render json: { errors: "You already reviewed this wine" }, status: :unprocessable_entity
+  else
+    review = current_user.reviews.create!(review_params)
+    render json: review, status: :created
+  end
     end 
 
     def update

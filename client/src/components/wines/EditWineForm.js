@@ -15,10 +15,10 @@ const defaultData = {
     img_url: ""
     }
 
-export default function EditWineForm() {
+export default function EditWineForm({loading}) {
     const [ modifiedWine, setModifiedWine ] = useState(defaultData)
 
-    const  wines  = useSelector(store => store.winesReducer)
+    const wines  = useSelector(store => store.winesReducer)
     console.log(wines)
     const { currentUser, loggedIn } = useSelector(store => store.usersReducer)
     const { errors } = useSelector(store => store.errorsReducer)
@@ -34,7 +34,7 @@ export default function EditWineForm() {
 
 
         useEffect(() => {
-            if( !loggedIn) {
+            if( !loading && !loggedIn) {
               navigate('/login')
             }
             const wine = wines.find(wine => wine.id === parseInt(id))
@@ -107,6 +107,7 @@ export default function EditWineForm() {
            if (resp.ok) {
                 resp.json().then(editedWine => {
                     //  patchMatch(editedWine)
+                    console.log(editedWine)
                     const action = ({ type: "UPDATE_WINE", payload: editedWine })
                      dispatch(action)
                      setModifiedWine(defaultData)

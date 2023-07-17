@@ -22,10 +22,12 @@ class UsersWinesController < ApplicationController
   def create
     # @users_wine = UsersWine.create!(users_wine_params)
     # render json: @users_wine
-
+    if current_user.users_wines.exists?(wine_id: params[:wine_id])
+      render json: { error: "Wine already exists" }, status: :unprocessable_entity
+    else
     @users_wine = current_user.users_wines.create!(users_wine_params.merge(quantity: 1))
     render json: @users_wine
-
+  end
     # @users_wine = UsersWine.new(users_wine_params)
 
     # if @users_wine.save

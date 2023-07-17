@@ -31,7 +31,7 @@ class WinesController < ApplicationController
     end
 
     def wine_params
-        params.permit(:name, :winery, :vintage, :region, :grape, :wine_type, :varietal_wine, :img_url)
+        params.permit(:name, :winery, :vintage, :region, :grape, :wine_type, :img_url)
     end
  
 end
