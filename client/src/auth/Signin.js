@@ -29,7 +29,7 @@ export default function Signin() {
           username: username,
           age: age,
           location: location,
-          varietal: favoriteVarietal,
+          favorite_varietal: favoriteVarietal,
           password: password,
           password_confirmation: confirmation
          }
@@ -56,7 +56,7 @@ export default function Signin() {
                 <TextField label='Username' placeholder='Enter username' fullWidth required onChange={(e) => setUsername(e.target.value)} />
                 <TextField label='Age' placeholder='Enter age' fullWidth required onChange={(e) => setAge(e.target.value)} />
                 <TextField label='Location' placeholder='Enter location' fullWidth required onChange={(e) => setLocation(e.target.value)} />
-                <TextField label='varietal' placeholder='Enter favorite varietal' fullWidth required onChange={(e) => setFavoriteVarietal(e.target.value)} />
+                <TextField label='favoriteVarietal' placeholder='Enter favorite varietal' fullWidth required onChange={(e) => setFavoriteVarietal(e.target.value)} />
                 <TextField label='Password' placeholder='Enter password' type='password' fullWidth required onChange={(e) => setPassword(e.target.value)} />
                 <TextField label='Password confirmation' placeholder='Enter password confirmation' type='password' fullWidth required onChange={(e) => setConfirmation(e.target.value)} />
               

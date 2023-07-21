@@ -106,7 +106,7 @@ export const signInUser = (createUser,navigate ) => {
                    if (err.age !== undefined){ errorArr.push(`age : ${err.age}`) }
                    if (err.username !== undefined){errorArr.push(`username : ${err.username}`)}
                   if (err.location !== undefined){ errorArr.push(`location : ${err.location}`) }
-                  if (err.favorite_varietal !== undefined){ errorArr.push(`favorite_club : ${err.favorite_varietal}`) }
+                  if (err.favorite_varietal !== undefined){ errorArr.push(`varietal : ${err.favorite_varietal}`) }
                   if (err.password !== undefined){ errorArr.push(`password : ${err.password}`) }
                   if (err.password_confirmation !== undefined){ errorArr.push(`password_confirmation : ${err.password_confirmation}`) }
                    console.log(errorArr)
