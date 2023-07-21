@@ -135,7 +135,7 @@ function Navbar() {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             
            </Typography>
-           <Button color="inherit" onClick={handleSignInClick} >signin</Button>
+           <Button color="inherit" onClick={handleSignInClick} >Sign up</Button>
           <Button color="inherit" onClick={handleLogInClick}>Login</Button>
         </Toolbar>
       </AppBar>

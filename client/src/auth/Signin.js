@@ -51,7 +51,7 @@ export default function Signin() {
             <Paper elevation={10} style={paperStyle} >
                 <Grid align='center'>
                      <h1>🔒</h1>
-                    <h2>Please Sign in</h2>
+                    <h2>Please Sign up</h2>
                 </Grid>
                 <TextField label='Username' placeholder='Enter username' fullWidth required onChange={(e) => setUsername(e.target.value)} />
                 <TextField label='Age' placeholder='Enter age' fullWidth required onChange={(e) => setAge(e.target.value)} />
