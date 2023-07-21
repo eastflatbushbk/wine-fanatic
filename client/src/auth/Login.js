@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
-import { clearErrors, setErrors } from '../components/actions/errors'
+import { clearErrors } from '../components/actions/errors'
 import { useNavigate } from 'react-router-dom';
 import {  Alert, Box, Button, Grid, Link, Paper, TextField, Typography } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
+import { loginUser } from '../components/actions/users';
 
 
 
@@ -27,33 +28,8 @@ export default function Login() {
         dispatch(clearErrors())
         console.log("log in submited")
 
-        fetch('/login', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({username, password})
-        })
-          .then(res => {
-            if (res.ok) {
-              res.json().then(user => {
-                // loginUser(user)
-                const action = {
-                    type: "LOGIN_USER",
-                    payload: user
-                  }
-                  dispatch(action)
-                navigate('/wines')
-              })
-            } else {
-              res.json().then(err => {
-                
-                // setErrors(err.errors)
-                dispatch(setErrors(err));
-                console.log(err.errors)
-              })
-            }
-          })
+        dispatch(loginUser(username, password, navigate))
+      
         }
   
         

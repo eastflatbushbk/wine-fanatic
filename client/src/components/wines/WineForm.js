@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { clearErrors, setErrors } from '../actions/errors'
-import { Alert, Box, Button, Checkbox, FormControl, FormControlLabel, FormLabel, InputLabel, MenuItem, Radio, RadioGroup, Select, TextField } from '@mui/material'
+import { clearErrors } from '../actions/errors'
+import { Alert, Box, Button, TextField } from '@mui/material'
+import { addWine } from '../actions/wines'
 
  const defaultData = {
       name: "",
@@ -18,16 +19,6 @@ import { Alert, Box, Button, Checkbox, FormControl, FormControlLabel, FormLabel,
 
 
 export default function WineForm() {
-    // const [newWine, setNewWine] = useState({
-    //     name: "",
-    //     winery: "",
-    //     vintage: "",
-    //     region: "",
-    //     grape: "",
-    //     wine_type: "",
-    //     img_url: "",
-    //     varietal_wine: false,
-    //   });
    
 
     const [ newWine, setNewWine ] = useState(defaultData)
@@ -44,23 +35,7 @@ export default function WineForm() {
            })
            console.log(newWine)
          }
-    // const handleChange = (event) => {
-    //     const { name, value } = event.target;
-    //     setNewWine((prevFormData) => ({
-    //       ...prevFormData,
-    //       [name]: value,
-    //     }));
-    //     console.log(newWine)
-    // };
-
-    // function handleChange(event){
-    //     setNewWine({
-    //       ...newWine,
-    //       [event.target.name]: event.target.value === "true"
-    //     })
-    //     console.log(newWine)
-    //   }
-   
+      
 
     const goBack = () => {
             navigate(-1);
@@ -73,32 +48,10 @@ export default function WineForm() {
             // setErrors([])
             dispatch(clearErrors())
            console.log(newWine)
-fetch("/wines", {
-  method: "POST",
-  headers: {
-      "Content-Type": "application/json",
-      "Accept": "application/json"
-  },
-  body: JSON.stringify(newWine)
-})
- .then(resp => {
- if (resp.ok) {
-      resp.json().then(addedWine => {
-        //    postMatch(addedMatch)
-        const action = ({ type: "ADD_WINE", payload: addedWine })
-                     dispatch(action)
-           setNewWine(defaultData)
-           navigate('/wines')
-      })
-  } else {
-     resp.json().then(errors => {
-        //    setErrors(errors.errors)
-          console.log(errors)
-           console.log(errors.errors)
-           dispatch(setErrors(errors))
-     })
-  }
-})
+
+         dispatch(addWine(newWine, navigate))
+
+         setNewWine(defaultData)
 
 }
 

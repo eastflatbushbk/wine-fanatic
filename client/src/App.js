@@ -15,6 +15,7 @@ import WineForm from './components/wines/WineForm';
 import UsersPage from './components/users/UsersPage';
 import CellarPage from './components/cellars/CellarPage';
 import EditCellarForm from './components/cellars/EditCellarForm';
+import AddToCellarForm from './components/cellars/AddToCellarForm';
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -39,6 +40,7 @@ console.log("hey")
                  <Route exact path="/cellars/:id" element={<CellarPage />} />
               <Route exact path="/add_wine" element={<WineForm />} />
                 <Route exact path="/edit_wine" element={<EditWineForm  loading={loading}    />} />
+                <Route exact path="/add_to_cellar" element={<AddToCellarForm  loading={loading}    />} />
                 <Route exact path="/edit_userswine" element={<EditCellarForm  loading={loading}     />} />
                   <Route exact path="/login" element={<Login />} />
                   <Route exact path="/signin" element={<Signin />} />

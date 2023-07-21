@@ -1,4 +1,4 @@
-import { Alert, Avatar, Box, Button, Card, CardActions, CardContent, CardHeader, CardMedia,  Container,  Grid,  IconButton, Stack, TextField, Tooltip, Typography} from '@mui/material'
+import { Alert, Avatar, Box, Button, Card, CardActions, CardContent, CardHeader, CardMedia,  Grid,  IconButton, Stack, Tooltip, Typography} from '@mui/material'
 
 import BookmarkAddRoundedIcon from '@mui/icons-material/BookmarkAddRounded';
 import EditRoundedIcon from '@mui/icons-material/EditRounded';
@@ -10,25 +10,21 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import ReviewCard from '../reviews/ReviewCard';
-import { clearErrors, setErrors } from '../actions/errors';
+import { clearErrors } from '../actions/errors';
 import { addToUsersWines } from '../actions/users';
+import { postReview } from '../actions/wines';
 // import { ClassNames } from '@emotion/react';
 // import { makeStyles } from '@mui/styles';
 
-// const useStyles = makeStyles({
-//         field: {
-//             marginTop: 10,
-//             marginBottom: 10,
-//             display: 'block'
-//         }
-//     })
+
+
 
 
 export default function WineDetails() {
     const  [formBtn, setFormBtn] = useState(false)
     const  [showForm , setShowForm] = useState(true)
     const [newComment , setNewComment] = useState("")
-    const [inCellar, setInCellar] = useState(false)
+    const [notInCellar, setNotInCellar] = useState(false)
     // const classes = useStyles()
     const navigate = useNavigate()
     const { errors } = useSelector(store => store.errorsReducer)
@@ -39,27 +35,28 @@ export default function WineDetails() {
     console.log(wines)
     console.log(errors)
     const dispatch = useDispatch();
-
-
+    const wineId = parseInt(useParams().id)
 
           useEffect(() => {
             
           currentUser.users_wines.map(userWine =>  {
                     if (wineId === userWine.wine_id) {
-                        console.log(wineId)
-                        console.log(userWine.wine_id)
-                         setInCellar(false)
-                          console.log(inCellar)
+                        console.log('wine id: ', wineId)
+                        console.log('user wine: ', userWine.wine_id)
+                         setNotInCellar(false)
                         } else {
-                    setInCellar(true)
+                            console.log('wine id in else: ', wineId)
+                            console.log('user wine id in else: ', userWine.wine_id)
+                    setNotInCellar(true)
                 } 
+                console.log('not IN CELLAR: ', notInCellar)
+
              }
              );
-            }, []);
+            });
 
 
 
-    const wineId = parseInt(useParams().id)
 
 
     const wineObj = wines.find(w => w.id === wineId)
@@ -73,74 +70,45 @@ export default function WineDetails() {
 
         //   console.log(users)
           
-        //   console.log(wine.id)
-        //   console.log(wine)
-        //   const activeUser = users.find(user => user.id === currentUser.id);
-        //   console.log(activeUser)
-        //   console.log(activeUser.users_wines)
-        
-          // for (const key in currentUser.users_wines) {
-          //   if (wine.id === currentUser.users_wines[key].wine_id) {
-          //     setInCellar(true)
-          //   }
-          // }
-          // currentUser.users_wines.forEach(userWine => {
-          //   wine.forEach(wine => {
-          //     if (wine.id === userWine.wine_id) {
-          //       setInCellar(true)
-          //     }
-          //   });
-          // });
-          useEffect(() => {
-            const handleUnload = () => {
-              setInCellar(false);
-            };
-        
-            window.addEventListener("beforeunload", handleUnload);
-        
-            return () => {
-              window.removeEventListener("beforeunload", handleUnload);
-            };
-          }, []); 
-
-
-          
-    let wineAmount;
-    let userWineId;
-  function handleEditClick(wineId) {
-    console.log("edit clicked")
-    
-    currentUser.users_wines.map(userWine =>  {
-      if (wineId === userWine.wine_id) {
-           const wineAmount = userWine.quantity
-           const userWineId = userWine.id;
-                
-            console.log(userWineId);
-            console.log(wineAmount);
-            navigate("/edit_userswine", { state: { wineId: wineId, userWineId: userWineId, wineAmount: wineAmount } });
    
-      }})
+  function handleCellarClick(wineId) {
+    console.log("edit clicked")
+                   
+    // let wineAmount;
+    // let userWineId;
+    // currentUser.users_wines.map(userWine =>  {
+    //   if (wineId === userWine.wine_id) {
+    //        wineAmount = userWine.quantity
+    //        userWineId = userWine.id;
+                
+    //         console.log(userWineId);
+    //         console.log(wineAmount);
+           
+    //   }})
+    //    navigate("/edit_userswine", { state: { wineId: wineId, userWineId: userWineId, wineAmount: wineAmount } });
+       navigate("/add_to_cellar", { state: { wineId: wineId } });
+   
       // outside :
-      console.log(userWineId);
-      console.log(wineAmount);
+    //   console.log(userWineId);
+    //   console.log(wineAmount);
     
   }
-          
-          const  showButton = inCellar ? (
-                  
-                      <Tooltip title="Add to cellar">
-                                <IconButton aria-label="add to cellar" onClick={() => dispatch(addToUsersWines(wineId))}>
-                                       <BookmarkAddRoundedIcon />
-                                </IconButton>
-                       </Tooltip>
-          ):( 
 
-              <Tooltip title="Edit amount in cellar" onClick={() => handleEditClick(wineId)}>
-                   <IconButton aria-label="edit ammount">
-                             <BookmarkAddedRoundedIcon />
-                    </IconButton>
-              </Tooltip>
-          ) 
+        //   const  showButton = notInCellar ? (
+                   
+        //               <Tooltip title="Add to cellar">
+        //                         <IconButton aria-label="add to cellar" onClick={() => dispatch(addToUsersWines(wineId))}>
+        //                                <BookmarkAddRoundedIcon />
+        //                         </IconButton>
+        //                </Tooltip>
+        //   ):( 
+            
+        //       <Tooltip title="Edit amount in cellar" onClick={() => handleEditClick(wineId)}>
+        //            <IconButton aria-label="edit ammount">
+        //                      <BookmarkAddedRoundedIcon />
+        //             </IconButton>
+        //       </Tooltip>
+        //   ) 
 
 
          
@@ -153,7 +121,6 @@ const content = wineObj.reviews.map( rev => <ReviewCard key={rev.id} rev={rev} w
                             <RateReviewRoundedIcon />
                        </IconButton>
       
-        // <button type="button"  className="btn btn-outline-secondary">💬</button>
         
        ):(null)
 
@@ -170,6 +137,7 @@ const content = wineObj.reviews.map( rev => <ReviewCard key={rev.id} rev={rev} w
         console.log(id)
          navigate('/edit_wine',{state:{id:id}})
     }
+     
 
       function handleChat () {
         console.log('chat btn clicked')
@@ -195,45 +163,14 @@ const content = wineObj.reviews.map( rev => <ReviewCard key={rev.id} rev={rev} w
     dispatch(clearErrors())
         console.log('review submitted')
       
-        const createOpinion = {
+        const createReview = {
             comment: newComment.comment,
             user_id: currentUser.id,
             wine_id: wineId
            }
                                          
-         fetch("/reviews", {
-          method: "POST",
-          headers: {
-              "Content-Type": "application/json",
-              "Accept": "application/json"
-          },
-          body: JSON.stringify(createOpinion)
-      })
-      .then(resp => {
-         if (resp.ok) {
-              resp.json().then(addedReview => {
-               
-                  const newReviews = [...wineObj.reviews, addedReview]
-                  
-                  const updatedwine = {...wineObj, reviews: newReviews}
-                   console.log(updatedwine)
-                     setNewComment("")
-                //    patchMatch(updatedMatch)
-                const action = ({ type: "UPDATE_WINE", payload: updatedwine })
-               
-                     dispatch(action)
-                    
-                 })
-         } else {
-             resp.json().then(error => {
-                //   setErrors(errors.errors)
-                dispatch(setErrors(error));
-                
-                  console.log(error.errors)
-                  console.log(error)
-             })
-         }
-      })
+          dispatch(postReview(createReview,wineObj))
+          setNewComment("")
        
     }
 
@@ -244,10 +181,7 @@ const content = wineObj.reviews.map( rev => <ReviewCard key={rev.id} rev={rev} w
                                 <EditRoundedIcon />
                             </IconButton>
                     </Tooltip>
-        {/* <button type="button" onClick={() => handleEdit(matchObj.id)} className="btn btn-outline-secondary">edit match</button>
-        &nbsp;
-        <button type="button" onClick={() => deleteMatch(matchObj.id)} className="btn btn-outline-danger">delete match</button>
-        &nbsp; */}
+      
         </>
        ) :(null) 
 
@@ -320,7 +254,13 @@ const content = wineObj.reviews.map( rev => <ReviewCard key={rev.id} rev={rev} w
       
         {/* <Stack direction="row" spacing={2}> */}
         <Box sx={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'flex-end' }}>
-                {showButton}
+
+        <Tooltip title="Add to cellar">
+                                <IconButton aria-label="add to cellar" onClick={() => handleCellarClick(wineId) }>
+                                        <BookmarkAddRoundedIcon />
+                                 </IconButton>
+                        </Tooltip>
+                             
          </Box>
         {/* </Stack> */}
          <Stack direction="row" spacing={2} style={{ float: 'right' }} >

@@ -3,8 +3,9 @@ import TextareaAutosize from '@mui/material/TextareaAutosize';
 import Button from '@mui/material/Button';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { clearErrors, setErrors } from '../actions/errors';
+import { clearErrors } from '../actions/errors';
 import { Alert, Box } from '@mui/material';
+import { editReview } from '../actions/wines';
 
 
 
@@ -74,46 +75,10 @@ export default function ReviewtForm() {
       dispatch(clearErrors())
      console.log('review form submited ')
 
-      fetch(`/reviews/${id}`, {
-          method: "PATCH",
-          headers: {
-              "Content-Type": "application/json",
-              "Accept": "application/json"
-          },
-          body: JSON.stringify(editedReview)
-      })
-      .then(resp => {
-         if (resp.ok) {
-              resp.json().then(modifiedReview => {
-
-                  const copyOfWines = [...wines]
-                   
-                  const wineToUpdate = copyOfWines.find(wine => wine.id === modifiedReview.wine.id)
-                
-                  const reviewToUpdate = wineToUpdate.reviews.find( rev => rev.id === modifiedReview.id )
-
-                  const idx = wineToUpdate.reviews.indexOf(reviewToUpdate)
-               
-                  delete modifiedReview.wine ;
-                 
-                  wineToUpdate.reviews.splice(idx, 1, modifiedReview)
-                
-                  // patchMatch(matchToUpdate)
-                  const action = ({ type: "UPDATE_WINE", payload: wineToUpdate })
-                  dispatch(action)
-                 
-                  setEditedReview(defaultData)
-                  
-                   navigate(`/wines/${wine_id}`)
-              })
-         } else {
-             resp.json().then(errors => {
-                  console.log(errors)
-                  //  setErrors(errors.errors)
-                  dispatch(setErrors(errors))
-             })
-         }
-      })
+     dispatch(editReview(id, editedReview, wines, wine_id, navigate))
+      
+     
+     setEditedReview(defaultData)
 
   }
 

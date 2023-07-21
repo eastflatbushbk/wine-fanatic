@@ -37,7 +37,11 @@ const usersReducer = (state=initialState, action) => {
                   return user;
                 }
                })
-               return updatedUsers
+              return updatedUsers                
+              //  return {
+              //    ...state,
+              //   users: updatedUsers // might be bad
+              //  }
       
         default:
       return state;

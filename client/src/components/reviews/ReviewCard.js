@@ -56,9 +56,7 @@ export default function ReviewCard({wineObj, rev}) {
 
     const displaybtns = currentUser.id === rev.user_id ? (
         <>
-        {/* <button type="button" onClick={() => handleEdit(com.id, matchObj.id)} className="btn btn-primary  btn-sm">edit</button>
-        &nbsp;
-        <button type="button" onClick={() => handleDelete(com.id)} className="btn btn-secondary  btn-sm">delete</button> */}
+       
         <Stack direction="row" spacing={2}>
                     <Tooltip title="edit review">
                             <IconButton aria-label="edit review" onClick={() => handleEdit(rev.id, wineObj.id)}>

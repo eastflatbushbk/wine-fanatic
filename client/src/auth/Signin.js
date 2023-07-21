@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { clearErrors, setErrors } from '../components/actions/errors'
+import { clearErrors } from '../components/actions/errors'
 import { Alert, Box, Button, Grid, Link, Paper, TextField, Typography } from '@mui/material'
+import { signInUser } from '../components/actions/users'
 // import LockOpenIcon from '@material-ui/icons/LockOpen';
 
 export default function Signin() {
@@ -33,47 +34,8 @@ export default function Signin() {
           password_confirmation: confirmation
          }
         
-        fetch('/users', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(createUser),
-        })
-           .then(res => {
-            if (res.ok) {
-              res.json().then(user => {
-                // addUser(user)
-                const addUserAction = {
-                    type: "ADD_USER",
-                    payload: user
-                  }
-                  dispatch(addUserAction)
-                // loginUser(user)
-                const loginAction = {
-                    type: "LOGIN_USER",
-                    payload: user
-                  }
-                  dispatch(loginAction)
-                navigate('/wines')
-              })
-            } else {
-              res.json().then(err => {
-                console.log(err)
-                console.log(err.age)
-                const errorArr = []
-                 if (err.age !== undefined){ errorArr.push(`age : ${err.age}`) }
-                 if (err.username !== undefined){errorArr.push(`username : ${err.username}`)}
-                if (err.location !== undefined){ errorArr.push(`location : ${err.location}`) }
-                if (err.favorite_varietal !== undefined){ errorArr.push(`favorite_club : ${err.favorite_varietal}`) }
-                if (err.password !== undefined){ errorArr.push(`password : ${err.password}`) }
-                if (err.password_confirmation !== undefined){ errorArr.push(`password_confirmation : ${err.password_confirmation}`) }
-                 console.log(errorArr)
-                //  setErrors(errorArr)
-                 dispatch(setErrors(errorArr));
-              })
-            }
-          })
+         dispatch(signInUser(createUser,navigate ))
+       
        }
        
  console.log(errors)

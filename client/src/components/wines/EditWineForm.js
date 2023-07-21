@@ -2,7 +2,8 @@ import { Alert, Box, Button, TextField } from '@mui/material';
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { clearErrors, setErrors } from '../actions/errors';
+import { clearErrors } from '../actions/errors';
+import { editWine } from '../actions/wines';
 
 
 const defaultData = {
@@ -52,31 +53,12 @@ export default function EditWineForm({loading}) {
             wine_type: wine.wine_type,
             img_url: wine.img_url
           })
-          console.log(modifiedWine)
+          // console.log(modifiedWine)
               
             
-          }, [wines,  loggedIn, currentUser, id, navigate])
+          }, [wines, loading, loggedIn, currentUser, id, navigate])
 
 
-
-
-
-
-
-
-        // const wine = wines.find(wine => wine.id === parseInt(id))
-        // console.log(wine)
-
-        // setModifiedWine({
-        //     name: wine.name,
-        //     winery: wine.winery,
-        //     vintage: wine.vintage,
-        //     region: wine.region,
-        //     grape: wine.grape,
-        //     wine_type: wine.wine_type,
-        //     img_url: wine.img_url
-        //   })
-        //   console.log(modifiedWine)
 
           function handleChange (event){
             setModifiedWine({
@@ -95,33 +77,9 @@ export default function EditWineForm({loading}) {
         event.preventDefault()
         dispatch(clearErrors())
 
-        fetch(`/wines/${id}`, {
-            method: "PATCH",
-            headers: {
-                "Content-Type": "application/json",
-                "Accept": "application/json"
-            },
-            body: JSON.stringify(modifiedWine)
-        })
-        .then(resp => {
-           if (resp.ok) {
-                resp.json().then(editedWine => {
-                    //  patchMatch(editedWine)
-                    console.log(editedWine)
-                    const action = ({ type: "UPDATE_WINE", payload: editedWine })
-                     dispatch(action)
-                     setModifiedWine(defaultData)
-                    
-                     navigate('/wines')
-                })
-           } else {
-               resp.json().then(errors => {
-                    // setErrors(errors.error)
-                    dispatch(setErrors(errors))
-               })
-           }
-        })
+        dispatch(editWine(id,modifiedWine,navigate)) 
 
+        setModifiedWine(defaultData)
     }
 
 
