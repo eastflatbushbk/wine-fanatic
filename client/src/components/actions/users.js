@@ -49,6 +49,7 @@ export const loginUser = (username, password, navigate) => {
               if (res.ok) {
                 res.json().then(user => {
                   // loginUser(user)
+                  console.log(user)
                   const action = {
                       type: "LOGIN_USER",
                       payload: user
@@ -226,12 +227,18 @@ export const editCellarWine = (userWineId, editUsersWine, users, currentUser, na
               
                 console.log(userToUpdate)
 
-                    const action = ({ type: "EDIT_USERS", payload: userToUpdate })
-                     dispatch(action)
+                    // const action = ({ type: "EDIT_USERS", payload: userToUpdate })
+                    //  dispatch(action)
+
+                    // const editAction = { type: "EDIT_USERS", payload: userToUpdate };
+                    // const loginAction = { type: "LOGIN_USER", payload: userToUpdate };
+                    // dispatch(loginAction);
+                    // dispatch(editAction);
+                        
                     //  setShowWine(showData)
-                    debugger
-                     navigate(`/cellars/${currentUser.id}`)
-                   
+                    // debugger
+                    //  navigate(`/cellars/${currentUser.id}`)
+                       navigate('/wines')
                 })
            } else {
                resp.json().then(errors => {
