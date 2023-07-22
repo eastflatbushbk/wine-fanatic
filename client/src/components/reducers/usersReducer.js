@@ -29,21 +29,7 @@ const usersReducer = (state=initialState, action) => {
             currentUser: initialState.currentUser,
             loggedIn: false
         }
-        // case "EDIT_USERS":
-        //     const updatedUsers = state.users.map(user => {
-        //         if(action.payload.id === user.id) {
-        //           return action.payload;
-        //         } else {
-        //           return user;
-        //         }
-        //        })
-        //       return updatedUsers   
-                            
-              //  return {
-              //    ...state,
-              //   users: updatedUsers // might be bad
-              //  }
-      
+            
         default:
       return state;
     }

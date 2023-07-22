@@ -2,8 +2,7 @@ import { setErrors } from "./errors"
 
 export const loadWines = () => {
     return dispatch => {
-      // asynchronous calls
-      fetch('/wines')
+       fetch('/wines')
       .then(resp => resp.json())
       .then(data => {
         const action = ({ type: "LOAD_WINES", payload: data })
