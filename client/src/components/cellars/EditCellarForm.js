@@ -66,11 +66,11 @@ export default function EditCellarForm({loading}) {
           vintage: wine.vintage,
           region: wine.region
         })
-        console.log(showWine)
+        // console.log(showWine)
         
           // setAmount(wineAmount)  
           
-        }, [])
+        }, [ wineId, wines])
 
       
 

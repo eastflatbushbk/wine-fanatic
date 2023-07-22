@@ -50,11 +50,11 @@ export default function AddToCellarForm({loading}) {
             vintage: wine.vintage,
             region: wine.region
           })
-          console.log(showWine)
+        //   console.log(showWine)
           
             // setAmount(wineAmount)  
             
-          }, [])
+          }, [loading, loggedIn, navigate, wineId, wines])
 
           const goBack = () => {
             navigate(-1);
