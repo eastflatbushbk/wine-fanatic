@@ -10,17 +10,25 @@ export default function CellarPage() {
   console.log(users)
     const  wines  = useSelector(store => store.winesReducer)
   console.log(wines)
+  const  usersWines  = useSelector(store => store.usersWinesReducer)
+  console.log(usersWines)
 
   const userId = parseInt(useParams().id)
 
 
   const userObj = users.find(u => u.id === userId)
         console.log(userObj)
+        
 
-      const filteredWines = wines.filter(wine => userObj.users_wines.some(userWine => userWine.wine_id === wine.id)); 
+
+      const filteredUsersWines = usersWines.filter(userWine => userWine.user_id === userId); 
+      console.log(filteredUsersWines) 
+
+      // const filteredWines = wines.filter(wine => filteredUsersWines.wine_id === wine.id); 
+      const filteredWines = wines.filter(wine => filteredUsersWines.some(userWine => userWine.wine_id === wine.id));
       console.log(filteredWines)  
       
-    const cellarWines =   filteredWines.map(wine => ({...wine, quantity: userObj.users_wines.find(userWine => userWine.wine_id === wine.id).quantity}));
+    const cellarWines =   filteredWines.map(wine => ({...wine, quantity: filteredUsersWines.find(userWine => userWine.wine_id === wine.id).quantity}));
     
       console.log(cellarWines)
 
@@ -44,7 +52,7 @@ export default function CellarPage() {
         <Grid container spacing={3}>
         { cellarWines.map( cW => (
               <Grid item key={cW.id} xs={12} md={6} lg={4}>
-                <CellarCard wine={cW} userObj={userObj}/>
+                <CellarCard wine={cW} filteredUsersWines={filteredUsersWines}/>
                 </Grid>
             )) }
         </Grid>

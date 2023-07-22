@@ -3,7 +3,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { clearErrors } from '../actions/errors'
 import { Alert, Box, Button, TextField } from '@mui/material'
-import { editCellarWine } from '../actions/users'
+import { editCellarWine } from '../actions/usersWines'
+
 
 
 
@@ -24,8 +25,9 @@ export default function EditCellarForm({loading}) {
     const { errors } = useSelector(store => store.errorsReducer)
     const { users } = useSelector(store => store.usersReducer)
     const wines  = useSelector(store => store.winesReducer)
-    const { loggedIn } = useSelector(store => store.usersReducer)
+    // const { loggedIn } = useSelector(store => store.usersReducer)
     const { currentUser } = useSelector(store => store.usersReducer)
+    const  usersWines  = useSelector(store => store.usersWinesReducer)
 
     const navigate = useNavigate()
     const dispatch = useDispatch();
@@ -34,8 +36,8 @@ export default function EditCellarForm({loading}) {
 
     const  wineId = location.state.wineId
         console.log('wine id ',wineId)
-    // const userWineId = location.state.userWineId
-    //     console.log(userWineId)
+    const userId = location.state.userId
+        console.log(userId)
     // const wineAmount = location.state.wineAmount
     //     console.log(wineAmount)
         console.log(users)
@@ -70,8 +72,7 @@ export default function EditCellarForm({loading}) {
           
         }, [])
 
-        const userObj = users.find(u => u.id === currentUser.id)
-        console.log('user obj' ,userObj)
+      
 
       //     let wineWithQuantity
       //     let wineAmount;
@@ -89,8 +90,10 @@ export default function EditCellarForm({loading}) {
       //        userWineId = wineWithQuantity[0].id 
       //       console.log(wineWithQuantity)
       // }
+      const filteredUsersWines = usersWines.filter(userWine => userWine.user_id === currentUser.id); 
+      console.log(filteredUsersWines) 
     
-      const wineWithQuantity = userObj.users_wines
+      const wineWithQuantity = filteredUsersWines
         .filter(userWine => userWine.wine_id === wineId)
         .map(userWine => {
           const wine = wines.find(wine => wine.id === userWine.wine_id);

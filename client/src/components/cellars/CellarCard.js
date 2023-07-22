@@ -1,26 +1,36 @@
-import { Card, CardActions, CardContent, CardMedia, IconButton, Tooltip, Typography } from '@mui/material'
+import { Card, CardActions, CardContent, CardMedia, Grid, IconButton, Tooltip, Typography } from '@mui/material'
 import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import CommentIcon from '@mui/icons-material/Comment';
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
-export default function CellarCard({wine , userObj}) {
+
+export default function CellarCard({wine , filteredUsersWines}) {
+  
+  const { currentUser } = useSelector(store => store.usersReducer)
+  const  usersWines  = useSelector(store => store.usersWinesReducer)
+  console.log(usersWines)
   const dispatch = useDispatch();
   const navigate = useNavigate()
     
     console.log(wine)
 
-    const userWines = userObj.users_wines.filter(userWine => userWine.wine_id === wine.id);
+    const userWines = filteredUsersWines.filter(userWine => userWine.wine_id === wine.id);
 const userWineIds = userWines.map(userWine => userWine.id);
- console.log(userWineIds)
+console.log("users_wines.id",userWineIds)
+const userWineUserIds = userWines.map(userWine => userWine.user_id);
+ console.log("users_wines.user_id",userWineUserIds)
+ console.log(parseInt(userWineUserIds))
+ console.log(currentUser.id)
+ console.log(filteredUsersWines)
 
     function handleCellarFormClick(wineId) {
       console.log("edit clicked")
       console.log("wine id", wineId)
       
-         navigate("/edit_userswine", { state: { wineId: wineId } });
+         navigate("/edit_userswine", { state: { wineId: wineId , userId: userWineUserIds } });
            
     }
   function handleDelete(id) {
@@ -30,16 +40,27 @@ const userWineIds = userWines.map(userWine => userWine.id);
         method: "DELETE"
     })
           
-    const filteredUserWine = userObj.users_wines.filter( uW => uW.id !== id )
-    console.log(filteredUserWine)
-    const updatedUser = {...userObj, users_wines: filteredUserWine}
-    console.log(updatedUser)
-    // patchMatch(updatedMatch)
-    const action = ({ type: "EDIT_USERS", payload: updatedUser })
+    
+    const action = ({ type: "DELETE_USERS_WINES", payload: id })
            
     dispatch(action)
     
   }
+
+  const displaybtn = (parseInt(userWineUserIds) === currentUser.id ) ? (
+      <Grid>
+         <Tooltip title="go to cellar form">
+                      <IconButton aria-label="go to cellar form" onClick={() => handleCellarFormClick(wine.id)}>
+                                    <BookmarkBorderIcon />
+                      </IconButton>
+        </Tooltip>
+         <Tooltip title="remove from cellar">
+                                <IconButton aria-label="remover from cellar" onClick={() => handleDelete(parseInt(userWineIds))}>
+                                       <DeleteIcon />
+                                </IconButton>
+                 </Tooltip>
+          </Grid>
+):(null) 
 
 
   return (
@@ -71,16 +92,8 @@ const userWineIds = userWines.map(userWine => userWine.id);
                         </IconButton>
                        </Tooltip>
                 </Link>
-                <Tooltip title="go to cellar form">
-                                <IconButton aria-label="go to cellar form" onClick={() => handleCellarFormClick(wine.id)}>
-                                       <BookmarkBorderIcon />
-                                </IconButton>
-                 </Tooltip>
-                <Tooltip title="remove from cellar">
-                                <IconButton aria-label="remover from cellar" onClick={() => handleDelete(userWineIds)}>
-                                       <DeleteIcon />
-                                </IconButton>
-                 </Tooltip>
+                {displaybtn}
+                
           
       </CardActions>
 

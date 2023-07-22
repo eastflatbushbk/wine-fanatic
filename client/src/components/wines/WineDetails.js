@@ -3,15 +3,15 @@ import { Alert, Avatar, Box, Button, Card, CardActions, CardContent, CardHeader,
 import BookmarkAddRoundedIcon from '@mui/icons-material/BookmarkAddRounded';
 import EditRoundedIcon from '@mui/icons-material/EditRounded';
 // import SpeakerNotesOffIcon from '@mui/icons-material/SpeakerNotesOff';
-import BookmarkAddedRoundedIcon from '@mui/icons-material/BookmarkAddedRounded';
+// import BookmarkAddedRoundedIcon from '@mui/icons-material/BookmarkAddedRounded';
 import RateReviewRoundedIcon from '@mui/icons-material/RateReviewRounded';
 import { red } from '@mui/material/colors';
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import ReviewCard from '../reviews/ReviewCard';
 import { clearErrors } from '../actions/errors';
-import { addToUsersWines } from '../actions/users';
+// import { addToUsersWines } from '../actions/users';
 import { postReview } from '../actions/wines';
 // import { ClassNames } from '@emotion/react';
 // import { makeStyles } from '@mui/styles';
@@ -24,36 +24,36 @@ export default function WineDetails() {
     const  [formBtn, setFormBtn] = useState(false)
     const  [showForm , setShowForm] = useState(true)
     const [newComment , setNewComment] = useState("")
-    const [notInCellar, setNotInCellar] = useState(false)
-    // const classes = useStyles()
     const navigate = useNavigate()
     const { errors } = useSelector(store => store.errorsReducer)
     const  wines  = useSelector(store => store.winesReducer)
+    const  cellarWines  = useSelector(store => store.usersWinesReducer)
     const { currentUser } = useSelector(store => store.usersReducer)
     console.log(currentUser)
     console.log(currentUser.id)
     console.log(wines)
+    console.log(cellarWines)
     console.log(errors)
     const dispatch = useDispatch();
     const wineId = parseInt(useParams().id)
 
-          useEffect(() => {
+        //   useEffect(() => {
             
-          currentUser.users_wines.map(userWine =>  {
-                    if (wineId === userWine.wine_id) {
-                        console.log('wine id: ', wineId)
-                        console.log('user wine: ', userWine.wine_id)
-                         setNotInCellar(false)
-                        } else {
-                            console.log('wine id in else: ', wineId)
-                            console.log('user wine id in else: ', userWine.wine_id)
-                    setNotInCellar(true)
-                } 
-                console.log('not IN CELLAR: ', notInCellar)
+        //   currentUser.users_wines.map(userWine =>  {
+        //             if (wineId === userWine.wine_id) {
+        //                 console.log('wine id: ', wineId)
+        //                 console.log('user wine: ', userWine.wine_id)
+        //                  setNotInCellar(false)
+        //                 } else {
+        //                     console.log('wine id in else: ', wineId)
+        //                     console.log('user wine id in else: ', userWine.wine_id)
+        //             setNotInCellar(true)
+        //         } 
+        //         console.log('not IN CELLAR: ', notInCellar)
 
-             }
-             );
-            });
+        //      }
+        //      );
+        //     });
 
 
 
@@ -74,44 +74,11 @@ export default function WineDetails() {
   function handleCellarClick(wineId) {
     console.log("edit clicked")
                    
-    // let wineAmount;
-    // let userWineId;
-    // currentUser.users_wines.map(userWine =>  {
-    //   if (wineId === userWine.wine_id) {
-    //        wineAmount = userWine.quantity
-    //        userWineId = userWine.id;
-                
-    //         console.log(userWineId);
-    //         console.log(wineAmount);
-           
-    //   }})
-    //    navigate("/edit_userswine", { state: { wineId: wineId, userWineId: userWineId, wineAmount: wineAmount } });
-       navigate("/add_to_cellar", { state: { wineId: wineId } });
-   
-      // outside :
-    //   console.log(userWineId);
-    //   console.log(wineAmount);
-    
+      navigate("/add_to_cellar", { state: { wineId: wineId } });
+             
   }
 
-        //   const  showButton = notInCellar ? (
-                   
-        //               <Tooltip title="Add to cellar">
-        //                         <IconButton aria-label="add to cellar" onClick={() => dispatch(addToUsersWines(wineId))}>
-        //                                <BookmarkAddRoundedIcon />
-        //                         </IconButton>
-        //                </Tooltip>
-        //   ):( 
-            
-        //       <Tooltip title="Edit amount in cellar" onClick={() => handleEditClick(wineId)}>
-        //            <IconButton aria-label="edit ammount">
-        //                      <BookmarkAddedRoundedIcon />
-        //             </IconButton>
-        //       </Tooltip>
-        //   ) 
-
-
-         
+              
 
 const content = wineObj.reviews.map( rev => <ReviewCard key={rev.id} rev={rev} wineObj={wineObj} />) 
 

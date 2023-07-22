@@ -3,7 +3,8 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { clearErrors } from '../actions/errors';
-import { addToUsersWines } from '../actions/users';
+import { addToUsersWines } from '../actions/usersWines';
+
 
 
 

@@ -16,6 +16,7 @@ import UsersPage from './components/users/UsersPage';
 import CellarPage from './components/cellars/CellarPage';
 import EditCellarForm from './components/cellars/EditCellarForm';
 import AddToCellarForm from './components/cellars/AddToCellarForm';
+import { loadUsersWines } from './components/actions/usersWines';
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -25,6 +26,7 @@ function App() {
 console.log("hey")
   useEffect(() => {
      dispatch(loadWines())
+     dispatch(loadUsersWines())
       dispatch(loadCurrentUser(setLoading)) 
      dispatch(loadUsers(setLoading)) 
     
@@ -33,12 +35,12 @@ console.log("hey")
    console.log(` loading ? ${loading}`)
    const routeJsx = loading ? ( <>...</> ) : (
 
-   <Routes>
+          <Routes>
                  <Route exact path="/wines" element={<WinePage />} />
                  <Route exact path="/users" element={<UsersPage />} />
                  <Route exact path="/wines/:id" element={<WineDetails />} />
                  <Route exact path="/cellars/:id" element={<CellarPage />} />
-              <Route exact path="/add_wine" element={<WineForm />} />
+                <Route exact path="/add_wine" element={<WineForm />} />
                 <Route exact path="/edit_wine" element={<EditWineForm  loading={loading}    />} />
                 <Route exact path="/add_to_cellar" element={<AddToCellarForm  loading={loading}    />} />
                 <Route exact path="/edit_userswine" element={<EditCellarForm  loading={loading}     />} />
@@ -52,8 +54,7 @@ console.log("hey")
 
   return (
     <div>
-       
-          
+        
                  <Navbar />
                          {routeJsx}
            
