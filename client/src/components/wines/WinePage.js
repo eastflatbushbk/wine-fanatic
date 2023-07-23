@@ -6,8 +6,7 @@ import { Box, Container } from '@mui/material';
 
 
 const WinePage = () => {
-  
-  
+    
   const   wines   = useSelector(store => store.winesReducer)
   console.log(wines)
     

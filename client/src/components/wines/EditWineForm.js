@@ -70,8 +70,7 @@ export default function EditWineForm({loading}) {
         const goBack = () => {
             navigate(-1);
             dispatch(clearErrors())
-            // setErrors([])
-          }
+           }
 
     function handleSubmit (event ){
         event.preventDefault()

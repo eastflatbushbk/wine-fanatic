@@ -8,8 +8,6 @@ import { editCellarWine } from '../actions/usersWines'
 
 
 
-
-
 const showData = {
   name: "",
   vintage: "",
@@ -38,8 +36,6 @@ export default function EditCellarForm({loading}) {
         console.log('wine id ',wineId)
     const userId = location.state.userId
         console.log(userId)
-    // const wineAmount = location.state.wineAmount
-    //     console.log(wineAmount)
         console.log(users)
         console.log(currentUser)
         
@@ -73,23 +69,7 @@ export default function EditCellarForm({loading}) {
         }, [ wineId, wines])
 
       
-
-      //     let wineWithQuantity
-      //     let wineAmount;
-      //   let userWineId;
-
-      //   if (wineCheck) {
-      //    wineWithQuantity = userObj.users_wines
-      //   .filter(userWine => userWine.wine_id === wineId)
-      //   .map(userWine => {
-      //     const wine = wines.find(wine => wine.id === userWine.wine_id);
-      //     return userWine.wine_id === wineId ? {  wine, id: userWine.id, quantity: userWine.quantity } : "wine not in cellar";
-         
-      //   } ) 
-      //       wineAmount = wineWithQuantity[0].quantity
-      //        userWineId = wineWithQuantity[0].id 
-      //       console.log(wineWithQuantity)
-      // }
+  
       const filteredUsersWines = usersWines.filter(userWine => userWine.user_id === currentUser.id); 
       console.log(filteredUsersWines) 
     
@@ -101,35 +81,20 @@ export default function EditCellarForm({loading}) {
          
         } )
 
-  console.log(wineWithQuantity);
-  //  console.log(wineWithQuantity[0].wine)
-   console.log("user wine id " ,wineWithQuantity[0].id)
-   console.log('user wine quantity' , wineWithQuantity[0].quantity)
-  //  const wineAmount = wineWithQuantity.quantity
+     console.log(wineWithQuantity);
+     console.log("user wine id " ,wineWithQuantity[0].id)
+     console.log('user wine quantity' , wineWithQuantity[0].quantity)
+
    
      const wineAmount = wineWithQuantity[0].quantity
-  const userWineId = wineWithQuantity[0].id
-console.log(wineAmount);
-   console.log(userWineId);
-        // let wineAmount;
-        // let userWineId;
-        // currentUser.users_wines.map(userWine =>  {
-        //   if (wineId === userWine.wine_id) {
-        //        wineAmount = userWine.quantity
-        //        userWineId = userWine.id;
-                    
-        //         console.log(userWineId);
-        //         console.log(wineAmount);
-               
-        //   }})
-
-        //   console.log(userWineId);
-        //   console.log(wineAmount);
-
+     const userWineId = wineWithQuantity[0].id
+     console.log(wineAmount);
+     console.log(userWineId);
+       
         const goBack = () => {
           navigate(-1);
           dispatch(clearErrors())
-          // setErrors([])
+          
         }
 
     function handleChange(event){
@@ -150,23 +115,11 @@ console.log(wineAmount);
            quantity: parseInt(amount.quantity)
             }
            console.log(editUsersWine)
-          //  const activeUser =currentUser.id
            console.log(userWineId)
             dispatch(editCellarWine(userWineId, editUsersWine, users, currentUser, navigate ))
         
       }
-      //    function handleSubmit (event ){
-      //     event.preventDefault()
-      //      dispatch(clearErrors())
-      //     //  const activeUser =currentUser.id
-      //     //  console.log(activeUser)
-      //      dispatch(addToUsersWines(wineId, navigate, currentUser ))
-                  
-  
-      // }
-  
-
-  
+        
 
   return (
      <Box m={15}>

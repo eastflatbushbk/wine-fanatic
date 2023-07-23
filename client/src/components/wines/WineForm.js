@@ -20,7 +20,6 @@ import { addWine } from '../actions/wines'
 
 export default function WineForm() {
    
-
     const [ newWine, setNewWine ] = useState(defaultData)
     const { errors } = useSelector(store => store.errorsReducer)
 

@@ -41,16 +41,16 @@ export const addToUsersWines = (newWine, navigate, currentUser, users) => {
          const action = ({ type: "ADD_USERS_WINES", payload: data })
     
      dispatch(action)
-    //  navigate to cellar
+       //  navigate to cellar page
        navigate(`/cellars/${currentUser.id}`)
        
     })
   } else {
     res.json().then(err => {
       
-      // setErrors(err.errors)
+     
       dispatch(setErrors(err));
-      // console.log(err.errors)
+      
       console.log(err)
     })
   }
@@ -94,7 +94,7 @@ export const editCellarWine = (userWineId, editUsersWine, users, currentUser, na
                 })
            } else {
                resp.json().then(errors => {
-                    // setErrors(errors.error)
+                    
                     dispatch(setErrors(errors))
                })
            }

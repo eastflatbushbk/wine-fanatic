@@ -39,8 +39,7 @@ const userWineUserIds = userWines.map(userWine => userWine.user_id);
     fetch(`/users_wines/${id}`, {
         method: "DELETE"
     })
-          
-    
+       
     const action = ({ type: "DELETE_USERS_WINES", payload: id })
            
     dispatch(action)

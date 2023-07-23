@@ -48,7 +48,7 @@ export const loginUser = (username, password, navigate) => {
             .then(res => {
               if (res.ok) {
                 res.json().then(user => {
-                  // loginUser(user)
+                 
                   console.log(user)
                   const action = {
                       type: "LOGIN_USER",
@@ -60,7 +60,7 @@ export const loginUser = (username, password, navigate) => {
               } else {
                 res.json().then(err => {
                   
-                  // setErrors(err.errors)
+                  
                   dispatch(setErrors(err));
                   console.log(err.errors)
                 })
@@ -84,13 +84,13 @@ export const signInUser = (createUser,navigate ) => {
              .then(res => {
               if (res.ok) {
                 res.json().then(user => {
-                  // addUser(user)
+                  
                   const addUserAction = {
                       type: "ADD_USER",
                       payload: user
                     }
                     dispatch(addUserAction)
-                  // loginUser(user)
+                  
                   const loginAction = {
                       type: "LOGIN_USER",
                       payload: user
@@ -110,7 +110,7 @@ export const signInUser = (createUser,navigate ) => {
                   if (err.password !== undefined){ errorArr.push(`password : ${err.password}`) }
                   if (err.password_confirmation !== undefined){ errorArr.push(`password_confirmation : ${err.password_confirmation}`) }
                    console.log(errorArr)
-                  //  setErrors(errorArr)
+                 
                    dispatch(setErrors(errorArr));
                 })
               }

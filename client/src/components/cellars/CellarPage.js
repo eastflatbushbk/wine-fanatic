@@ -23,8 +23,7 @@ export default function CellarPage() {
 
       const filteredUsersWines = usersWines.filter(userWine => userWine.user_id === userId); 
       console.log(filteredUsersWines) 
-
-      // const filteredWines = wines.filter(wine => filteredUsersWines.wine_id === wine.id); 
+    
       const filteredWines = wines.filter(wine => filteredUsersWines.some(userWine => userWine.wine_id === wine.id));
       console.log(filteredWines)  
       
@@ -32,12 +31,6 @@ export default function CellarPage() {
     
       console.log(cellarWines)
 
-//       const userObj = users.find(user => user.id === userId);
-// const userObjWines = userId.users_wines.map(userWine => {
-//    const wine = wines.find(wine => wine.id === userWine.wine_id);
-//    return { wine, quantity: userWine.quantity };
-// });
-// console.log(userObjWines)
 
   return (
    

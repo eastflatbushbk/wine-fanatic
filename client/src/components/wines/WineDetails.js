@@ -37,28 +37,7 @@ export default function WineDetails() {
     const dispatch = useDispatch();
     const wineId = parseInt(useParams().id)
 
-        //   useEffect(() => {
-            
-        //   currentUser.users_wines.map(userWine =>  {
-        //             if (wineId === userWine.wine_id) {
-        //                 console.log('wine id: ', wineId)
-        //                 console.log('user wine: ', userWine.wine_id)
-        //                  setNotInCellar(false)
-        //                 } else {
-        //                     console.log('wine id in else: ', wineId)
-        //                     console.log('user wine id in else: ', userWine.wine_id)
-        //             setNotInCellar(true)
-        //         } 
-        //         console.log('not IN CELLAR: ', notInCellar)
-
-        //      }
-        //      );
-        //     });
-
-
-
-
-
+       
     const wineObj = wines.find(w => w.id === wineId)
           console.log(wineObj)
 
@@ -66,10 +45,7 @@ export default function WineDetails() {
           const firstLetter = wineObj.author.username
           const capitalized = firstLetter.charAt(0).toUpperCase() 
           console.log(capitalized);
-
-
-        //   console.log(users)
-          
+            
    
   function handleCellarClick(wineId) {
     console.log("edit clicked")
@@ -77,7 +53,6 @@ export default function WineDetails() {
       navigate("/add_to_cellar", { state: { wineId: wineId } });
              
   }
-
               
 
 const content = wineObj.reviews.map( rev => <ReviewCard key={rev.id} rev={rev} wineObj={wineObj} />) 
@@ -87,8 +62,7 @@ const content = wineObj.reviews.map( rev => <ReviewCard key={rev.id} rev={rev} w
         <IconButton aria-label="write a review" onClick={handleChat}>
                             <RateReviewRoundedIcon />
                        </IconButton>
-      
-        
+              
        ):(null)
 
 
@@ -96,7 +70,7 @@ const content = wineObj.reviews.map( rev => <ReviewCard key={rev.id} rev={rev} w
         setShowForm(false)
         setNewComment("")
         dispatch(clearErrors())
-        // setErrors([])
+       
         setFormBtn(true)
       }
 
@@ -126,7 +100,7 @@ const content = wineObj.reviews.map( rev => <ReviewCard key={rev.id} rev={rev} w
 
     function handleCommentSubmit(event) {
         event.preventDefault();
-    //     setErrors([])
+    
     dispatch(clearErrors())
         console.log('review submitted')
       

@@ -56,7 +56,7 @@ export default function ReviewtForm() {
 
     const goBack = () => {
       navigate(-1);
-      // setErrors([])
+      dispatch(clearErrors())
       }
 
 
@@ -71,7 +71,7 @@ export default function ReviewtForm() {
 
      function handleSubmit (event ){
       event.preventDefault()
-      // setErrors([])
+      
       dispatch(clearErrors())
      console.log('review form submited ')
 

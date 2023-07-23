@@ -18,11 +18,11 @@ import EditCellarForm from './components/cellars/EditCellarForm';
 import AddToCellarForm from './components/cellars/AddToCellarForm';
 import { loadUsersWines } from './components/actions/usersWines';
 
+
 function App() {
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
 
-  //  const { currentUser } = useSelector((store) => store.usersReducer)
 console.log("hey")
   useEffect(() => {
      dispatch(loadWines())
@@ -47,7 +47,7 @@ console.log("hey")
                   <Route exact path="/login" element={<Login />} />
                   <Route exact path="/signin" element={<Signin />} />
                   <Route exact path="/edit_review" element={<ReviewForm     />} />
-                  {/* <Route exact path="/" element={<Home />} /> */}
+                  
          </Routes>
  )
 

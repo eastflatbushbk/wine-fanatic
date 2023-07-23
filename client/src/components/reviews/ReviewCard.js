@@ -12,22 +12,19 @@ import { pink } from '@mui/material/colors';
 import { clearErrors } from '../actions/errors';
 
 export default function ReviewCard({wineObj, rev}) {
+    const navigate = useNavigate()
     const dispatch = useDispatch();
-  console.log(wineObj)
-  console.log(rev)
-  console.log(rev.user_id)
-    // current user
+        console.log(wineObj)
+        console.log(rev)
+        console.log(rev.user_id)
+   
     const { currentUser } = useSelector(store => store.usersReducer)
     console.log(currentUser)
     console.log(currentUser.id)
-    // update wine
+  
 
     const firstLetter = rev.username.charAt(0).toUpperCase() 
           console.log(firstLetter);
-
-
-    
-    const navigate = useNavigate()
 
     function handleEdit(id , wine_id) {
         console.log(id)
@@ -46,8 +43,7 @@ export default function ReviewCard({wineObj, rev}) {
         const wineWithReviewRemoved = wineObj.reviews.filter( r => r.id !== id )
         
         const updatedwine = {...wineObj, reviews: wineWithReviewRemoved}
-        
-        // patchMatch(updatedMatch)
+                
         const action = ({ type: "UPDATE_WINE", payload: updatedwine })
                
         dispatch(action)

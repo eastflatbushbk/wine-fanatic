@@ -14,13 +14,9 @@ const showData = {
     region: ""
     }
 export default function AddToCellarForm({loading}) {
-
-
-
-    
+   
     const { loggedIn } = useSelector(store => store.usersReducer)
     const [ showWine, setShowWine ] = useState(showData)
-
     const { errors } = useSelector(store => store.errorsReducer)
     const { users } = useSelector(store => store.usersReducer)
     const { currentUser } = useSelector(store => store.usersReducer)
@@ -42,31 +38,26 @@ export default function AddToCellarForm({loading}) {
            
            const wine = wines.find(wine => wine.id === parseInt(wineId))
                console.log('wine in the form ',wine)
-            // if( currentUser.id !== wine.user_id) {
-            //     navigate('/wines')
-            //   }
+            
           setShowWine({
             name: wine.name,
             vintage: wine.vintage,
             region: wine.region
           })
-        //   console.log(showWine)
-          
-            // setAmount(wineAmount)  
+         
             
           }, [loading, loggedIn, navigate, wineId, wines])
 
           const goBack = () => {
             navigate(-1);
             dispatch(clearErrors())
-            // setErrors([])
+           
           }
 
           function handleSubmit (event ){
             event.preventDefault()
              dispatch(clearErrors())
-            //  const activeUser =currentUser.id
-            //  console.log(activeUser)
+            
              dispatch(addToUsersWines(wineId, navigate, currentUser, users ))
        
         }

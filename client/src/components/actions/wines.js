@@ -26,7 +26,7 @@ export const loadWines = () => {
        .then(resp => {
        if (resp.ok) {
             resp.json().then(addedWine => {
-              //    postMatch(addedMatch)
+             
               const action = ({ type: "ADD_WINE", payload: addedWine })
                            dispatch(action)
                  
@@ -34,7 +34,7 @@ export const loadWines = () => {
             })
         } else {
            resp.json().then(errors => {
-              //    setErrors(errors.errors)
+              
                 console.log(errors)
                  console.log(errors.errors)
                  dispatch(setErrors(errors))
@@ -65,7 +65,7 @@ export const postReview = (createReview, wineObj) => {
             const updatedwine = {...wineObj, reviews: newReviews}
              console.log(updatedwine)
               
-          //    patchMatch(updatedMatch)
+          
           const action = ({ type: "UPDATE_WINE", payload: updatedwine })
          
                dispatch(action)
@@ -73,7 +73,7 @@ export const postReview = (createReview, wineObj) => {
            })
    } else {
        resp.json().then(error => {
-          //   setErrors(errors.errors)
+          
           dispatch(setErrors(error));
           
             console.log(error.errors)
@@ -100,7 +100,7 @@ export const postReview = (createReview, wineObj) => {
       .then(resp => {
          if (resp.ok) {
               resp.json().then(editedWine => {
-                  //  patchMatch(editedWine)
+                  
                   console.log(editedWine)
                   const action = ({ type: "UPDATE_WINE", payload: editedWine })
                    dispatch(action)
@@ -109,7 +109,7 @@ export const postReview = (createReview, wineObj) => {
               })
          } else {
              resp.json().then(errors => {
-                  // setErrors(errors.error)
+                  
                   dispatch(setErrors(errors))
              })
          }
@@ -150,7 +150,7 @@ export const postReview = (createReview, wineObj) => {
                    
                     wineToUpdate.reviews.splice(idx, 1, modifiedReview)
                   
-                    // patchMatch(matchToUpdate)
+                    
                     const action = ({ type: "UPDATE_WINE", payload: wineToUpdate })
                     dispatch(action)
                    
@@ -161,7 +161,7 @@ export const postReview = (createReview, wineObj) => {
            } else {
                resp.json().then(errors => {
                     console.log(errors)
-                    //  setErrors(errors.errors)
+                   
                     dispatch(setErrors(errors))
                })
            }
