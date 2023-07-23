@@ -1,14 +1,12 @@
 Rails.application.routes.draw do
   
   resources :users_wines
-  # resources :users_wines, only: [:create]
+  
   resources :wines do   
     resources :reviews, only: [:index, :show]
   end
   resources :reviews, only: [:index, :show, :create, :update, :destroy]
-  # resources :users do   
-  #   resources :users_wines, only: [:index, :show]
-  # end
+  
   resources :users, only: [:show, :create, :index]
   
   # Routing logic: fallback requests for React Router.

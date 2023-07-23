@@ -1,8 +1,5 @@
 class Wine < ApplicationRecord
-    # def type
-    #     self.name + " " + self.grape
-    #   end
-
+   
      has_many :users_wines
     #  has_many :users, through: :users_wines
 
@@ -13,7 +10,7 @@ class Wine < ApplicationRecord
     before_validation :set_defaults
 
   def set_defaults
-    self.img_url = "https://taste.online/products/taste-house-wine-bundle" if img_url.blank?
+    self.img_url = "https://clipground.com/images/wine-jug-clipart-10.png" if img_url.blank?
   end
 
     validates :name,presence: true, allow_blank: false

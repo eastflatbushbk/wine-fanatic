@@ -20,35 +20,24 @@ class UsersWinesController < ApplicationController
   # POST /users_wines
   # add to cellar , wine's quatity will be 1
   def create
-    # @users_wine = UsersWine.create!(users_wine_params)
-    # render json: @users_wine
+    
     if current_user.users_wines.exists?(wine_id: params[:wine_id])
-      render json: { error: "Wine already exists" }, status: :unprocessable_entity
+      render json: { errors: "Wine already exists , check your cellar" }, status: :unprocessable_entity
     else
     @users_wine = current_user.users_wines.create!(users_wine_params.merge(quantity: 1))
     render json: @users_wine
   end
-    # @users_wine = UsersWine.new(users_wine_params)
-
-    # if @users_wine.save
-    #   render json: @users_wine, status: :created, location: @users_wine
-    # else
-    #   render json: @users_wine.errors, status: :unprocessable_entity
-    # end
+  
   end
 
   # PATCH/PUT /users_wines/1
   # update only wine's quantity 
   def update
-      @users_wine.update(quantity: params[:quantity])
+    # @users_wine = current_user.users_wines.find_by_id(params[:wine_id])
+      @users_wine.update!(users_wine_params)
       render json: @users_wine, status: :accepted
 
-    # if @users_wine.update(users_wine_params)
-    #   render json: @users_wine
-    # else
-    #   render json: @users_wine.errors, status: :unprocessable_entity
-    # end
-  end
+    end
 
   # DELETE /users_wines/1
   # remove wine from cellar
@@ -59,8 +48,8 @@ class UsersWinesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_users_wine
-      # @users_wine = UsersWine.find(params[:id])
-      @users_wine = current_user.users_wines.find_by(params[:id])
+      
+      @users_wine = current_user.users_wines.find_by_id(params[:id])
       if !@users_wine
         render json:{ error: "Not authorized" }, status: :unauthorized
     end
@@ -68,7 +57,7 @@ class UsersWinesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def users_wine_params
-      # params.fetch(:users_wine, {})
-      params.permit(:wine_id, :quantity)
+      
+      params.permit(:wine_id,:quantity)
     end
 end

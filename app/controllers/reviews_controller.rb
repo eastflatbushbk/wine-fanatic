@@ -14,8 +14,7 @@ class ReviewsController < ApplicationController
     end
 
     def create
-        # review = current_user.reviews.create!(review_params)
-        # render json: review, status: :created
+        
         wine = Wine.find(params[:wine_id])
 
   if Review.exists?(user_id: current_user.id, wine_id: wine.id)

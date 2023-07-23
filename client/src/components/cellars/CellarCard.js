@@ -48,7 +48,7 @@ const userWineUserIds = userWines.map(userWine => userWine.user_id);
 
   const displaybtn = (parseInt(userWineUserIds) === currentUser.id ) ? (
       <Grid>
-         <Tooltip title="go to cellar form">
+         <Tooltip title="change amount in stock">
                       <IconButton aria-label="go to cellar form" onClick={() => handleCellarFormClick(wine.id)}>
                                     <BookmarkBorderIcon />
                       </IconButton>
