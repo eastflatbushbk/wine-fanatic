@@ -6,13 +6,21 @@ Wine Fanatic is a web-based application that enables the user to post wines & re
 
 
 -A user will be able to sign up for an account.
+
 -A user will be able to login after signing up for an account.
--A user will be able to post a new wine
+
+-A user will be able to post a new wine.
+
 -A user will be able to view and post reviews to all wines that are posted.
+
 -A user will be able to view and update wines that they posted.
+
 -A user will be able to view, update and delete reviews that they posted.
+
 -A user will be able to add wine to their virtual cellar
+
 -A user will be able to view other user's cellars 
+
 -A user will be able to view , update and delete wines that the added to their cellar
 
 
