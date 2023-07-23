@@ -17,6 +17,7 @@ import CellarPage from './components/cellars/CellarPage';
 import EditCellarForm from './components/cellars/EditCellarForm';
 import AddToCellarForm from './components/cellars/AddToCellarForm';
 import { loadUsersWines } from './components/actions/usersWines';
+import Home from './components/Home';
 
 
 function App() {
@@ -47,7 +48,7 @@ console.log("hey")
                   <Route exact path="/login" element={<Login />} />
                   <Route exact path="/signin" element={<Signin />} />
                   <Route exact path="/edit_review" element={<ReviewForm     />} />
-                  
+                  <Route exact path="/" element={<Home />} />
          </Routes>
  )
 

@@ -62,7 +62,7 @@ function Navbar() {
         navigate("/add_wine")
         
       };
-    const handleHomeClick = () => {
+    const handleWineClick = () => {
         dispatch(clearErrors())
         navigate("/wines")
         
@@ -103,10 +103,10 @@ function Navbar() {
           </Typography>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             <Stack direction='row' spacing={2}>
-            <Button color="inherit"onClick={handleHomeClick}>Home</Button>
+            <Button color="inherit"onClick={handleWineClick}>Wines</Button>
             <Button color="inherit" onClick={handleAddWineClick}>add wine</Button> 
             <Button color="inherit" onClick={handleMyCellarClick}>my cellar</Button>
-            <Button color="inherit" onClick={handleUsersClick}>users</Button>
+            <Button color="inherit" onClick={handleUsersClick}>Users</Button>
             </Stack>
            </Typography>
           

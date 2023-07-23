@@ -20,7 +20,7 @@ const WineCard = ({wine}) => {
 
   const displayButton = loggedIn ? (
     <>
-               <Tooltip title="see reviews">
+               <Tooltip title="see reviews & details">
              <IconButton aria-label="see reviews" >
                              <CommentIcon />
                         </IconButton>
