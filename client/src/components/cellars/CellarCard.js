@@ -2,9 +2,9 @@ import { Card, CardActions, CardContent, CardMedia, Grid, IconButton, Tooltip, T
 import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import CommentIcon from '@mui/icons-material/Comment';
-import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useDispatch, useSelector } from 'react-redux';
+import EditNoteIcon from '@mui/icons-material/EditNote';
 
 
 export default function CellarCard({wine , filteredUsersWines}) {
@@ -35,8 +35,7 @@ const userWineUserIds = userWines.map(userWine => userWine.user_id);
     }
   function handleDelete(id) {
     console.log(id)
-    // dispatch(clearErrors())
-    fetch(`/users_wines/${id}`, {
+   fetch(`/users_wines/${id}`, {
         method: "DELETE"
     })
        
@@ -49,8 +48,8 @@ const userWineUserIds = userWines.map(userWine => userWine.user_id);
   const displaybtn = (parseInt(userWineUserIds) === currentUser.id ) ? (
       <Grid>
          <Tooltip title="change amount in stock">
-                      <IconButton aria-label="go to cellar form" onClick={() => handleCellarFormClick(wine.id)}>
-                                    <BookmarkBorderIcon />
+                      <IconButton aria-label="change stock amount" onClick={() => handleCellarFormClick(wine.id)}>
+                                    <EditNoteIcon />
                       </IconButton>
         </Tooltip>
          <Tooltip title="remove from cellar">

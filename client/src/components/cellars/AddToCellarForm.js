@@ -69,7 +69,7 @@ export default function AddToCellarForm({loading}) {
       fullWidth
       id="name"
       name="name"
-      label="name"
+      label="Name"
       value={showWine.name}
       disabled
     />
@@ -78,7 +78,7 @@ export default function AddToCellarForm({loading}) {
       fullWidth
       id="vintage"
       name="vintage"
-      label="vintage"
+      label="Vintage"
       value={showWine.vintage}
       disabled
     />
@@ -87,7 +87,7 @@ export default function AddToCellarForm({loading}) {
       fullWidth
       id="region"
       name="region"
-      label="region"
+      label="Region"
       value={showWine.region}
       disabled
     />   

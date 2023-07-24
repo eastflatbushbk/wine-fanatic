@@ -6,8 +6,6 @@ import { Alert, Box, Button, TextField } from '@mui/material'
 import { editCellarWine } from '../actions/usersWines'
 
 
-
-
 const showData = {
   name: "",
   vintage: "",
@@ -23,7 +21,6 @@ export default function EditCellarForm({loading}) {
     const { errors } = useSelector(store => store.errorsReducer)
     const { users } = useSelector(store => store.usersReducer)
     const wines  = useSelector(store => store.winesReducer)
-    // const { loggedIn } = useSelector(store => store.usersReducer)
     const { currentUser } = useSelector(store => store.usersReducer)
     const  usersWines  = useSelector(store => store.usersWinesReducer)
 
@@ -38,34 +35,19 @@ export default function EditCellarForm({loading}) {
         console.log(userId)
         console.log(users)
         console.log(currentUser)
-        
-      //  const wineCheck = currentUser.users_wines.some(userWine => userWine.wine_id === wineId)
-      //     console.log(wineCheck)
- 
-                
-      
+          
 
         useEffect(() => {
-          // if( !loading && !loggedIn) {
-          //   navigate('/login')
-          //   console.log(loading)
-          //   console.log(loggedIn)
-          // }
-         
+                 
          const wine = wines.find(wine => wine.id === parseInt(wineId))
              console.log('wine in the form ',wine)
-          // if( currentUser.id !== wine.user_id) {
-          //     navigate('/wines')
-          //   }
+         
         setShowWine({
           name: wine.name,
           vintage: wine.vintage,
           region: wine.region
         })
-        // console.log(showWine)
-        
-          // setAmount(wineAmount)  
-          
+                 
         }, [ wineId, wines])
 
       
@@ -128,7 +110,7 @@ export default function EditCellarForm({loading}) {
       fullWidth
       id="name"
       name="name"
-      label="name"
+      label="Name"
       value={showWine.name}
       disabled
     />
@@ -137,7 +119,7 @@ export default function EditCellarForm({loading}) {
       fullWidth
       id="vintage"
       name="vintage"
-      label="vintage"
+      label="Vintage"
       value={showWine.vintage}
       disabled
     />
@@ -146,7 +128,7 @@ export default function EditCellarForm({loading}) {
       fullWidth
       id="region"
       name="region"
-      label="region"
+      label="Region"
       value={showWine.region}
       disabled
     />   
@@ -155,7 +137,7 @@ export default function EditCellarForm({loading}) {
         fullWidth
         id="old_quantiy"
         name="old_quantity"
-        label="quantity"
+        label="Quantity"
         value={wineAmount}
         disabled
       />
@@ -164,7 +146,7 @@ export default function EditCellarForm({loading}) {
         fullWidth
         id="quantity"
         name="quantity"
-        label="enter new quantity"
+        label="Enter New Quantity"
         value={amount.quantity}
         onChange={handleChange}
      />

@@ -106,7 +106,7 @@ function Navbar() {
             <Button color="inherit"onClick={handleWineClick}>Wines</Button>
             <Button color="inherit" onClick={handleAddWineClick}>add wine</Button> 
             <Button color="inherit" onClick={handleMyCellarClick}>my cellar</Button>
-            <Button color="inherit" onClick={handleUsersClick}>Users</Button>
+            <Button color="inherit" onClick={handleUsersClick}>Friends</Button>
             </Stack>
            </Typography>
           

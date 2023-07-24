@@ -1,23 +1,14 @@
 import { Alert, Avatar, Box, Button, Card, CardActions, CardContent, CardHeader, CardMedia,  Grid,  IconButton, Stack, Tooltip, Typography} from '@mui/material'
-
-import BookmarkAddRoundedIcon from '@mui/icons-material/BookmarkAddRounded';
+import { postReview } from '../actions/wines';
 import EditRoundedIcon from '@mui/icons-material/EditRounded';
-// import SpeakerNotesOffIcon from '@mui/icons-material/SpeakerNotesOff';
-// import BookmarkAddedRoundedIcon from '@mui/icons-material/BookmarkAddedRounded';
 import RateReviewRoundedIcon from '@mui/icons-material/RateReviewRounded';
 import { red } from '@mui/material/colors';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import ReviewCard from '../reviews/ReviewCard';
 import { clearErrors } from '../actions/errors';
-// import { addToUsersWines } from '../actions/users';
-import { postReview } from '../actions/wines';
-// import { ClassNames } from '@emotion/react';
-// import { makeStyles } from '@mui/styles';
-
-
-
+import AddBoxIcon from '@mui/icons-material/AddBox';
 
 
 export default function WineDetails() {
@@ -97,6 +88,9 @@ const content = wineObj.reviews.map( rev => <ReviewCard key={rev.id} rev={rev} w
         })
         
     }
+    useEffect(() => {
+        setNewComment("");
+      }, [wineObj]);
 
     function handleCommentSubmit(event) {
         event.preventDefault();
@@ -109,9 +103,10 @@ const content = wineObj.reviews.map( rev => <ReviewCard key={rev.id} rev={rev} w
             user_id: currentUser.id,
             wine_id: wineId
            }
-                                         
+                                        
           dispatch(postReview(createReview,wineObj))
-          setNewComment("")
+      
+          handleForm ()
        
     }
 
@@ -196,9 +191,9 @@ const content = wineObj.reviews.map( rev => <ReviewCard key={rev.id} rev={rev} w
         {/* <Stack direction="row" spacing={2}> */}
         <Box sx={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'flex-end' }}>
 
-        <Tooltip title="Add to cellar">
+        <Tooltip title="add to cellar">
                                 <IconButton aria-label="add to cellar" onClick={() => handleCellarClick(wineId) }>
-                                        <BookmarkAddRoundedIcon />
+                                        <AddBoxIcon />
                                  </IconButton>
                         </Tooltip>
                              

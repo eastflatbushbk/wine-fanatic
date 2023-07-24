@@ -38,13 +38,13 @@ export default function WineForm() {
 
     const goBack = () => {
             navigate(-1);
-        // setErrors([])
+       
         dispatch(clearErrors())
         }
 
         function handleSubmit(event) {
             event.preventDefault();
-            // setErrors([])
+         
             dispatch(clearErrors())
            console.log(newWine)
 

@@ -1,7 +1,5 @@
 import { Avatar, Card, CardActions, CardContent, CardHeader, IconButton, Tooltip, Typography } from '@mui/material'
-// import EditRoundedIcon from '@mui/icons-material/EditRounded';
 import WineBarIcon from '@mui/icons-material/WineBar';
-
 import React from 'react'
 import { useSelector } from 'react-redux';
 import { red } from '@mui/material/colors';
@@ -61,7 +59,7 @@ export default function UsersCard({user}) {
 {/* onClick={handleClick} */}
       <CardActions disableSpacing >
       <Link to={`/cellars/${user.id}`}>
-       <Tooltip title="view user's cellar">
+       <Tooltip title="view this cellar">
         <IconButton aria-label="add to favorites" >
           < WineBarIcon />
         </IconButton>
