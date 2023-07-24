@@ -23,7 +23,7 @@ export default function Login() {
 
     function handleLogInSubmit(event){
         event.preventDefault()
-        // setErrors([])
+       
         dispatch(clearErrors())
         console.log("log in submited")
 

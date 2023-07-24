@@ -24,7 +24,7 @@ function App() {
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
 
-console.log("hey")
+
   useEffect(() => {
      dispatch(loadWines())
      dispatch(loadUsersWines())

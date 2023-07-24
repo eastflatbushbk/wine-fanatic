@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { clearErrors } from '../components/actions/errors'
 import { Alert, Box, Button, Grid, Link, Paper, TextField, Typography } from '@mui/material'
 import { signInUser } from '../components/actions/users'
-// import LockOpenIcon from '@material-ui/icons/LockOpen';
+
 
 export default function Signin() {
     const [password, setPassword] = useState("")
@@ -22,7 +22,7 @@ export default function Signin() {
 
     function handleSignInSubmit(event){
         event.preventDefault()
-        // setErrors([])
+        
         dispatch(clearErrors())
         console.log("sgn in submited") 
         const createUser = {
@@ -67,7 +67,7 @@ export default function Signin() {
                         Log in 
                 </Link>
                 </Typography>
-                {/* <div>{displayErrors}</div> */}
+                
                 {displayErrors && displayErrors.length > 0 && (<Alert severity="warning">{displayErrors}</Alert>)}
             </Paper>
         </Grid>

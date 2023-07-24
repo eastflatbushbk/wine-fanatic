@@ -50,7 +50,7 @@ export default function UsersCard({user}) {
     
       <CardContent>
         <Typography gutterBottom variant="body2" component="div">
-        favorite varietal :  {user.favorite_varietal}
+        Favorite Varietal :  {user.favorite_varietal}
         </Typography>
         <Typography variant="body2" color="text.secondary">
          Location : {user.location}

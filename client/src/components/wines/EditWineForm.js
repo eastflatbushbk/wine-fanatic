@@ -53,7 +53,7 @@ export default function EditWineForm({loading}) {
             wine_type: wine.wine_type,
             img_url: wine.img_url
           })
-          // console.log(modifiedWine)
+        
               
             
           }, [wines, loading, loggedIn, currentUser, id, navigate])
