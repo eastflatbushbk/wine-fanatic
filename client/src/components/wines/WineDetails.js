@@ -3,7 +3,7 @@ import { postReview } from '../actions/wines';
 import EditRoundedIcon from '@mui/icons-material/EditRounded';
 import RateReviewRoundedIcon from '@mui/icons-material/RateReviewRounded';
 import { red } from '@mui/material/colors';
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import ReviewCard from '../reviews/ReviewCard';
@@ -88,9 +88,9 @@ const content = wineObj.reviews.map( rev => <ReviewCard key={rev.id} rev={rev} w
         })
         
     }
-    useEffect(() => {
-        setNewComment("");
-      }, [wineObj]);
+    // useEffect(() => {
+    //     setNewComment("");
+    //   }, [wineObj]);
 
     function handleCommentSubmit(event) {
         event.preventDefault();
@@ -107,8 +107,13 @@ const content = wineObj.reviews.map( rev => <ReviewCard key={rev.id} rev={rev} w
           dispatch(postReview(createReview,wineObj))
       
           handleForm ()
+        //  handleChat ()
+        
+
        
     }
+    
+    
 
     const displayButtons = currentUser.id === wineObj.user_id ? (
         <>
@@ -124,20 +129,20 @@ const content = wineObj.reviews.map( rev => <ReviewCard key={rev.id} rev={rev} w
     const displayForm = showForm ? (
       
 
-        <>
+        
        
          <form action="/html/tags/html_form_tag_action.cfm" method="post" onSubmit={handleCommentSubmit} >
-      <textarea name="comment"  value={newComment.comment} onChange={handleChange} style={{width:"100%",height:"90px",padding:"2%",font:"1.4em/1.6em cursive", backgroundcolor:"gold", color:"green"}}>
+                <textarea name="comment"  value={newComment.comment} onChange={handleChange} style={{width:"100%",height:"90px",padding:"2%",font:"1.4em/1.6em cursive", backgroundcolor:"gold", color:"green"}}>
+
+                </textarea>
         
-        </textarea>
-        
-        {errors && errors.length > 0 && (<Alert severity="warning">{errors}</Alert>)}
+                    {errors && errors.length > 0 && (<Alert severity="warning">{errors}</Alert>)}
           
           <Button type="submit" color='primary'>submit</Button>
        
           <Button color='primary' onClick={handleForm}  type="button">cancel</Button>
       </form> 
-        </>
+       
      
      ):(null)
      

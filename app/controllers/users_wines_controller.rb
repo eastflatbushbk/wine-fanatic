@@ -33,7 +33,7 @@ class UsersWinesController < ApplicationController
   # PATCH/PUT /users_wines/1
   # update only wine's quantity 
   def update
-    # @users_wine = current_user.users_wines.find_by_id(params[:wine_id])
+   
       @users_wine.update!(users_wine_params)
       render json: @users_wine, status: :accepted
 

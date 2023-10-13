@@ -1,7 +1,7 @@
 class Wine < ApplicationRecord
    
      has_many :users_wines
-    #  has_many :users, through: :users_wines
+   
 
     has_many :reviews, dependent: :destroy
     has_many :commented_users, through: :reviews, source: :user
@@ -26,7 +26,7 @@ class Wine < ApplicationRecord
   
 
    def check_vintage
-    #    errors.add(:vintage, " cannot be greater than this year") if 
+    
       validates_numericality_of :vintage, less_than_or_equal_to: Time.now.year
    end
 
