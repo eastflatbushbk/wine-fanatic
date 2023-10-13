@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "/wine-fanatic/static/css/main.0c6f9d35.chunk.css",
+    "main.js": "/wine-fanatic/static/js/main.d13ef1e9.chunk.js",
+    "main.js.map": "/wine-fanatic/static/js/main.d13ef1e9.chunk.js.map",
+    "runtime-main.js": "/wine-fanatic/static/js/runtime-main.edb5ed95.js",
+    "runtime-main.js.map": "/wine-fanatic/static/js/runtime-main.edb5ed95.js.map",
+    "static/js/2.7026172d.chunk.js": "/wine-fanatic/static/js/2.7026172d.chunk.js",
+    "static/js/2.7026172d.chunk.js.map": "/wine-fanatic/static/js/2.7026172d.chunk.js.map",
+    "index.html": "/wine-fanatic/index.html",
+    "static/css/main.0c6f9d35.chunk.css.map": "/wine-fanatic/static/css/main.0c6f9d35.chunk.css.map",
+    "static/js/2.7026172d.chunk.js.LICENSE.txt": "/wine-fanatic/static/js/2.7026172d.chunk.js.LICENSE.txt",
+    "static/media/wineglasses.71fede56.jpg": "/wine-fanatic/static/media/wineglasses.71fede56.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.edb5ed95.js",
+    "static/js/2.7026172d.chunk.js",
+    "static/css/main.0c6f9d35.chunk.css",
+    "static/js/main.d13ef1e9.chunk.js"
+  ]
+}
