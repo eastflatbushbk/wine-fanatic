@@ -93,7 +93,7 @@ const content = wineObj.reviews.map( rev => <ReviewCard key={rev.id} rev={rev} w
     //   }, [wineObj]);
 
     function handleCommentSubmit(event) {
-        event.preventDefault();
+       event.preventDefault();
     
     dispatch(clearErrors())
         console.log('review submitted')
@@ -106,11 +106,9 @@ const content = wineObj.reviews.map( rev => <ReviewCard key={rev.id} rev={rev} w
                                         
           dispatch(postReview(createReview,wineObj))
       
-          handleForm ()
-        //  handleChat ()
+         handleForm ()
+        //  setNewComment("")
         
-
-       
     }
     
     
