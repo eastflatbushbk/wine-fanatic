@@ -54,13 +54,9 @@ function App() {
 
 
   return (
-    <div>
-        
+    <div>     
                  <Navbar />
                          {routeJsx}
-           
-                         
-          
     </div>
   );
 }
